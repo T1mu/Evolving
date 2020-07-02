@@ -3,9 +3,10 @@
 *.docx
 *.doc
 *.zip
-/3_Report/*
-/8_SoftWares/*
-/4_Paper/*
 .vs
-/1_Learn/-
-/7_Documents/*
+1_Learn/-
+3_Report/*
+4_Paper/*
+7_Documents/*
+8_SoftWares/*
+!*.md
