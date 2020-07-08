@@ -1,50 +1,36 @@
 # StudyNotes-iTerm
-学习笔记之--iterm终端命令操作
+学习笔记之--**iterm**终端命令操作
 
-标签
+## command 相关
+### 标签
 ===
 
-新建标签：command + t
-
-关闭标签：command + w
-
-切换全屏：command + enter
+新建标签|关闭标签|标签切换
+---|---|---
+`command + t`| `command + w` | `command + 数字`
 
 查找：command + f
 
-分屏
-===
-垂直分屏：command + d
+### 分屏
 
-水平分屏：command + shift + d
-
-切换屏幕：**command** + **option** + 方向键 / `command + [ 或 command + ]`
+垂直分屏|水平分屏|切换屏幕
+---|---|---
+`command + d`|`command + shift + d`|`command + option + 方向键`
 
 查看历史命令：command + ;
 
 查看剪贴板历史：command + shift + h
 
-** 其他**
-
-清除当前行：ctrl + u
-
-到行首：ctrl + a
-
-到行尾：ctrl + e
-
-前进后退：ctrl + f/b (相当于左右方向键)
+## 行命令
+清除当前行|到行手|到行尾
+---|---|---
+`ctrl+u`|`ctrl+a`|`ctrl+a`
 
 上一条命令：ctrl + p
-
-搜索命令历史：ctrl + r
-
-删除当前光标的字符：ctrl + d
-
-删除光标之前的字符：ctrl + h
-
-删除光标之前的单词：ctrl + w
-
-删除到文本末尾：ctrl + k
+## 字符操作命令
+删除当前光标的字符|删除光标之前的字符|删除光标之前的单词|删除到文本末尾
+---|---|---|---
+`ctrl+d`|`ctrl+h`|`ctrl+w`|`ctrl+k`
 
 交换光标处文本：ctrl + t
 
