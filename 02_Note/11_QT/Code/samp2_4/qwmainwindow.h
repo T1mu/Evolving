@@ -22,8 +22,6 @@ public:
 private slots:
     void on_actioncut_triggered();
 
-
-
     void on_actionbold_triggered(bool checked);
 
     void on_actionItalic_triggered(bool checked);
