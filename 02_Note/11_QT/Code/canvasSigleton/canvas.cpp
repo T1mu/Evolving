@@ -87,18 +87,19 @@ void canvas::SetMat(const QString &path)
 void canvas::DisplayMat(const Mat &mat)
 {
     m_CanPAINT = true;
-    m_crt_mat = mat;
-    m_crt_pix = Mat2Pix(mat);
-    m_statusInfo.depth = m_crt_mat.depth()*8;
+    m_src_mat = mat;
+    m_src_pix = Mat2Pix(mat);
+    m_statusInfo.depth = mat.depth()*8;
     m_statusInfo.width = mat.cols;
     m_statusInfo.height = mat.rows;
+    m_pix_ratio = (double)this->width()/m_src_pix.width(); //设置缩放变量
 }
 
 void canvas::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    m_pix_ratio = this->width()/m_src_pix.width(); //设置缩放变量
 
+    qDebug()<<"initRatio:"<<m_pix_ratio;
     m_pix_width = m_src_pix.width();
     m_pix_height = m_src_pix.height();
     int crtWidth = m_pix_ratio *m_pix_width;
@@ -110,12 +111,13 @@ void canvas::paintEvent(QPaintEvent *event)
     if(m_action==canvas::Shrink)           //缩小
     {
         m_pix_ratio-=0.05*m_pix_ratio;
-        if(m_pix_ratio<1)
-            m_pix_ratio = 1;
+        if(m_pix_ratio<(double)this->width()/m_src_pix.width())
+            m_pix_ratio = (double)this->width()/m_src_pix.width();
         /*显示比例*/
         m_statusInfo.ratio = m_pix_ratio;
 //        str.sprintf("%.0f%",m_pix_ratio*100);
 //        label.setText(str) ;
+        qDebug()<<"缩小ratio:"<<m_pix_ratio;
     }
     else if(m_action==canvas::Amplification)             //放大
     {
