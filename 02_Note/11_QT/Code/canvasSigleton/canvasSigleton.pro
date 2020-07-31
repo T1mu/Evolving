@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-07-22T14:18:30
+# Project created by QtCreator 2020-07-30T13:22:31
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = untitled
+TARGET = canvasSigleton
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -24,10 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    person.cpp
+        canvas.cpp
 
-HEADERS  += mainwindow.h \
-    person.h
+HEADERS  += canvas.h
 
-FORMS    += mainwindow.ui
+FORMS    += canvas.ui
+
+INCLUDEPATH+= C:/opencv/build/include/opencv \
+                   C:/opencv/build/include/opencv2 \
+                   C:/opencv/build/include
+LIBS+= -LC:/opencv/build/x64/vc12/lib \
+    -lopencv_world310d

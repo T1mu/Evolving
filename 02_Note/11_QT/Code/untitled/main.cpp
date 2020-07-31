@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <person.h>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    person a;
+    a.age=10;
+    a.height=175.1;
+    a.shout();
 
-    return a.exec();
+    return 0;
 }
