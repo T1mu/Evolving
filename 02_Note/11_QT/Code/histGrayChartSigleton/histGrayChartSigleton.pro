@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui\
+            charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,3 +30,8 @@ SOURCES += main.cpp\
 HEADERS  += histgraychart.h
 
 FORMS    += histgraychart.ui
+INCLUDEPATH+= C:/opencv/build/include/opencv \
+                   C:/opencv/build/include/opencv2 \
+                   C:/opencv/build/include
+LIBS+= -LC:/opencv/build/x64/vc12/lib \
+    -lopencv_world310d

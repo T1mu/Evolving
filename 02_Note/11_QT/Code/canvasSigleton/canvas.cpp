@@ -8,9 +8,10 @@ canvas::canvas(QWidget *parent) :
     ui->setupUi(this);
     initUi();
 
-    this->SetMat(QString("D:\\11_XProject\\imgST\\imgST\\default.tif"));
+    this->SetMat(QString("D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif"));
     //D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif
     this->DisplayMat(m_src_mat);
+
     this->setMouseTracking(true);
 }
 
@@ -61,12 +62,19 @@ void canvas::initUi()
 {
     this->setCanvasSize();
     this->setCursor(Qt::CrossCursor);				//设置鼠标样式
+    this->SetInitRatio(0.1,1.5);
     m_canvas_rect=QRect(0,0,m_canvas_width,m_canvas_height);
     ui->ShortCutTipsLab->hide();
     ui->label->setGeometry(0,m_canvas_height-20,m_canvas_width,20);
     ui->helpBtn->setGeometry(m_canvas_width-ui->helpBtn->width(),m_canvas_height-20,ui->helpBtn->width(),20);
     ui->ShortCutTipsLab->setGeometry(ui->helpBtn->x()+ui->helpBtn->width()-ui->ShortCutTipsLab->width(),ui->helpBtn->y()-ui->ShortCutTipsLab->height(),
                                      ui->ShortCutTipsLab->width(),ui->ShortCutTipsLab->height());
+}
+
+void canvas::SetInitRatio(double zoom_ratio, double move_ratio)
+{
+    this->m_crt_zoom_ratio = zoom_ratio;
+    this->m_move_ratio = move_ratio;
 }
 
 void canvas::SetMat(const Mat &mat)
@@ -96,7 +104,7 @@ void canvas::SetMat(const QString &path)
 
 void canvas::DisplayMat(const Mat &mat)
 {
-    m_CanPAINT = true;
+    m_IsPAINTED = true;
     m_src_mat = mat;
     m_crt_mat = mat;
     m_src_pix = Mat2Pix(mat);
@@ -109,100 +117,78 @@ void canvas::DisplayMat(const Mat &mat)
 
 void canvas::paintEvent(QPaintEvent *event)
 {
-    Q_UNUSED(event)
-    QPainter painter(this);
-
-    //qDebug()<<"initRatio:"<<m_init_zoom_ratio;
-    m_pix_width = m_src_pix.width();
-    m_pix_height = m_src_pix.height();
-    int crtWidth = m_crt_zoom_ratio *m_pix_width;
-    int crtHeight = m_crt_zoom_ratio *m_pix_height;
-
-    m_crt_pix = m_crt_pix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
-
-    if(m_action==canvas::Shrink)           //缩小
+    if(m_IsPAINTED==false)
     {
-        m_crt_zoom_ratio-=m_zoom_ratio*m_crt_zoom_ratio;
-        if(m_crt_zoom_ratio<(double)this->width()/m_src_pix.width())
-            m_crt_zoom_ratio = (double)this->width()/m_src_pix.width();
-    }
-    else if(m_action==canvas::Amplification)             //放大
-    {
-        m_crt_zoom_ratio+=m_zoom_ratio*m_crt_zoom_ratio;
-        if(m_crt_zoom_ratio > 3)
-            m_crt_zoom_ratio = 3;
-    }
-    if(m_action==canvas::Amplification || m_action==canvas::Shrink)     //更新图片
-    {
-        crtWidth = m_crt_zoom_ratio *m_pix_width;
-        crtHeight = m_crt_zoom_ratio *m_pix_height;
-        m_crt_pix = m_src_pix;                                               //重新装载,因为之前的图片已经被缩放过
+        QMessageBox mesg;
+        mesg.warning(this,"Can Not Pain","Can Not Find The File Imported!");
+    }else{
+        Q_UNUSED(event)
+        QPainter painter(this);
+
+        //qDebug()<<"initRatio:"<<m_init_zoom_ratio;
+        m_pix_width = m_src_pix.width();
+        m_pix_height = m_src_pix.height();
+        int crtWidth = m_crt_zoom_ratio *m_pix_width;
+        int crtHeight = m_crt_zoom_ratio *m_pix_height;
+
         m_crt_pix = m_crt_pix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
-        m_action=canvas::None;
+
+        if(m_action==canvas::Shrink)           //缩小
+        {
+            m_crt_zoom_ratio-=m_zoom_ratio*m_crt_zoom_ratio;
+            if(m_crt_zoom_ratio<(double)this->width()/m_src_pix.width())
+                m_crt_zoom_ratio = (double)this->width()/m_src_pix.width();
+        }
+        else if(m_action==canvas::Amplification)             //放大
+        {
+            m_crt_zoom_ratio+=m_zoom_ratio*m_crt_zoom_ratio;
+            if(m_crt_zoom_ratio > 3)
+                m_crt_zoom_ratio = 3;
+        }
+        if(m_action==canvas::Amplification || m_action==canvas::Shrink)     //更新图片
+        {
+            crtWidth = m_crt_zoom_ratio *m_pix_width;
+            crtHeight = m_crt_zoom_ratio *m_pix_height;
+            m_crt_pix = m_src_pix;                                               //重新装载,因为之前的图片已经被缩放过
+            m_crt_pix = m_crt_pix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
+            m_action=canvas::None;
+        }
+
+        if(m_action==canvas::Move)                                          //移动 限制拖放不移出窗外
+        {
+            if( (m_pix_x+this->width()<crtWidth || m_single_offset.x()>0) && (m_pix_x>0 || m_single_offset.x()<0))
+                m_all_offsets.setX(m_all_offsets.x()+m_single_offset.x());
+            if((m_pix_y+this->height()<crtHeight || m_single_offset.y()>0)&&(m_pix_y>0 || m_single_offset.y()<0))
+                m_all_offsets.setY(m_all_offsets.y()+m_single_offset.y());
+            //qDebug()<<"=======总偏移的更新=======\n"<<m_all_offsets.x()<<"\n"<<m_all_offsets.y();
+            m_action=canvas::None;
+        }
+        //    qDebug()<<"总偏移:"<<m_all_offsets.x();
+        m_pix_x = crtWidth/2 - this->width()/2 - m_all_offsets.x();
+        if(m_pix_x<0)
+            m_pix_x=0;
+        m_pix_y = crtHeight/2 - this->height()/2 - m_all_offsets.y();
+        if(m_pix_y<0)
+            m_pix_y=0;
+        if(m_pix_x+this->width()>crtWidth)
+            m_pix_x=crtWidth-this->width();
+        if(m_pix_y+this->width()>crtHeight){
+            m_pix_y=crtHeight-this->width();
+        }
+
+        //    qDebug()<<"==============绘制信息===============";
+        qDebug()<<"\n图像起始点x:"<<m_pix_x<<" 图像起始点y:"<<m_pix_y;
+        painter.drawTiledPixmap(0,0,this->width(),this->height(),m_crt_pix,m_pix_x,m_pix_y);             //绘画图形
+
+        //更新label信息
+        m_statusInfo.ratio = m_crt_zoom_ratio;
+        ui->label->setText(QString(" 深度: %1 | 大小: [%2*%3] | 缩放率: %4% | 坐标: (%5, %6) | 灰度值: %7")
+                           .arg(m_statusInfo.depth)
+                           .arg(m_statusInfo.width).arg(m_statusInfo.height)
+                           .arg(m_statusInfo.ratio*100, 3)
+                           .arg((int)m_statusInfo.pos_x,5).arg((int)m_statusInfo.pos_y,5)
+                           .arg(m_statusInfo.value,5));
     }
-    if(m_action==canvas::Move)                    //移动
-    {
-        int offsetx=m_all_offsets.x()+m_single_offset.x();
-        m_all_offsets.setX(offsetx);
-
-        int offsety=m_all_offsets.y()+m_single_offset.y();
-        m_all_offsets.setY(offsety);
-
-//        qDebug()<<"=======offset=======\noffsetx:"<<offsetx<<"\noffsety:"<<offsety;
-//        qDebug()<<"=======m_all_offsets=======\nm_all_offsets x:"<<m_all_offsets.x()<<"\n m_all_offsets y:"<<m_all_offsets.y();
-        m_action=canvas::None;
-    }
-
-    //限制图片不移出框外
-    int x = this->width()/2 + m_all_offsets.x() -crtWidth/2;
-    if(x<0){
-        x=0;
-//        m_is_X_Edge = true;
-        //TODO: 移动到边界多了 需要同样的反向操作
-    }
-
-    int y = this->height()/2 + m_all_offsets.y() -crtHeight/2;
-    if(y<0){
-        y=0;
-//        m_is_Y_Edge = true;
-    }
-//    qDebug()<< QString("窗体宽度:%1 \n 总偏移量:(%2,%3) \n(%4,%5)").arg(this->width()).arg(m_all_offsets.x()).arg(m_all_offsets.y()).arg(x).arg(y);
-    m_pix_x = crtWidth/2 - this->width()/2 - m_all_offsets.x();
-    if(m_pix_x<0)
-        m_pix_x=0;
-    m_pix_y = crtHeight/2 - this->height()/2 - m_all_offsets.y();
-    if(m_pix_y<0)
-        m_pix_y=0;
-
-//    int w =(crtWidth - m_pix_x)>this->width()? this->width() : (crtWidth - m_pix_x);
-//    if(w>(this->width()-x))
-//        w = this->width()-x;
-
-//    int h =(crtHeight - m_pix_y)>this->height()? this->height() : (crtHeight - m_pix_y);
-//    if(h>(this->height()-y))
-//        h = this->height()-y;
-    if(x>0)
-        x=0;
-    if(y>0)
-        y=0;
-    if(m_pix_x+this->width()>crtWidth){
-        m_pix_x=crtWidth-this->width();
-    }
-    if(m_pix_y+this->width()>crtHeight){
-        m_pix_y=crtHeight-this->width();
-    }
-//    qDebug()<<"==============绘制信息===============";
-//    qDebug()<<"画板x:"<<x<<" 画板y:"<<" \n图像起始点x:"<<m_pix_x<<" 图像起始点y:"<<m_pix_y;
-    painter.drawTiledPixmap(x,y,this->width(),this->height(),m_crt_pix,m_pix_x,m_pix_y);             //绘画图形
-
-    //更新label信息
-    m_statusInfo.ratio = m_crt_zoom_ratio;
-    ui->label->setText(QString(" 深度: %1 | 大小: [%2*%3] | 缩放率: %4% | 坐标: (%5, %6) | 灰度值: %7")
-                       .arg(m_statusInfo.depth)
-                       .arg(m_statusInfo.width).arg(m_statusInfo.height)
-                       .arg(m_statusInfo.ratio*100)
-                       .arg((int)m_statusInfo.pos_x,5).arg((int)m_statusInfo.pos_y,5)
-                       .arg(m_statusInfo.value,5));
 }
 
 void canvas::wheelEvent(QWheelEvent *event)
@@ -215,11 +201,6 @@ void canvas::wheelEvent(QWheelEvent *event)
         this->update();
     }
     event->accept();
-}
-
-void canvas::SetInitRatio(double ratio)
-{
-    this->m_crt_zoom_ratio = ratio;
 }
 
 bool canvas::event(QEvent *event)
@@ -284,28 +265,24 @@ bool canvas::event(QEvent *event)
     if(event->type() == QEvent::MouseMove)              //移动图片
     {
         QMouseEvent *mouse = dynamic_cast<QMouseEvent* >(event);
-        if(ctrlLefbtnPressed)
-        {
-            qDebug() << QString("%1").arg(m_is_X_Edge);
 
-
-            m_single_offset.setX(mouse->x() - PreDot.x());
-
-
-
-            m_single_offset.setY(mouse->y() - PreDot.y());
-            qDebug()<<mouse->x()<<PreDot<<m_single_offset;
+        //鼠标移动 记录单次偏移量
+        if(ctrlLefbtnPressed){
+            //qDebug() << QString("%1").arg(m_is_X_Edge);
+            m_single_offset.setX((mouse->x() - PreDot.x())*m_move_ratio);
+            m_single_offset.setY((mouse->y() - PreDot.y())*m_move_ratio);
+            //qDebug()<<mouse->x()<<PreDot.x()<<m_single_offset;
             PreDot = mouse->pos();
-
             m_action = canvas::Move;
         }
-
-        m_statusInfo.pos_x = m_pix_x/m_crt_zoom_ratio + mouse->pos().x()/m_crt_zoom_ratio;
-        m_statusInfo.pos_y = m_pix_y/m_crt_zoom_ratio + mouse->pos().y()/m_crt_zoom_ratio;
-        if(m_crt_mat.data){
-            ushort* pxvec = m_crt_mat.ptr<ushort>(m_statusInfo.pos_y); //每行的头地址
-            m_statusInfo.value = pxvec[(int)m_statusInfo.pos_x];
-
+        //计算缩放后的坐标 和坐标处的灰度值
+        if(m_crt_zoom_ratio>0){
+            m_statusInfo.pos_x = m_pix_x/m_crt_zoom_ratio + mouse->pos().x()/m_crt_zoom_ratio;  //计算缩放后的坐标
+            m_statusInfo.pos_y = m_pix_y/m_crt_zoom_ratio + mouse->pos().y()/m_crt_zoom_ratio;  //计算缩放后的坐标
+            if(m_crt_mat.data){
+                ushort* pxvec = m_crt_mat.ptr<ushort>(m_statusInfo.pos_y); //每行的头地址
+                m_statusInfo.value = pxvec[(int)m_statusInfo.pos_x];                            //获取地址的灰度值
+            }
         }
         update();
     }
@@ -321,10 +298,10 @@ QPixmap canvas::Mat2Pix(const Mat &mat)
         tempMat.cols*tempMat.channels(),
         QImage::Format_Grayscale8);
     QPixmap imgPix = QPixmap::fromImage(img);
-//    qDebug()<<"mat    Size:"<<mat.cols;
-//    qDebug()<<"tempMatSize:"<<tempMat.cols;
-//    qDebug()<<"img    Size:"<<img.size();
-//    qDebug()<<"imgPix Size:"<<imgPix.size();
+    qDebug()<<"mat    Size:"<<mat.cols;
+    qDebug()<<"tempMatSize:"<<tempMat.cols;
+    qDebug()<<"img    Size:"<<img.size();
+    qDebug()<<"imgPix Size:"<<imgPix.size();
     return imgPix;
 }
 

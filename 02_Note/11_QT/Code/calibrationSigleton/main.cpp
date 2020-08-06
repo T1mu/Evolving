@@ -1,4 +1,4 @@
-#include "calibration.h"
+#include "calibration_test1.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

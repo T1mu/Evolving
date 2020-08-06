@@ -23,9 +23,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-SOURCES += main.cpp\
-        calibration.cpp
+SOURCES += main.cpp \
+    calibration_test1.cpp
 
-HEADERS  += calibration.h
+HEADERS  += \
+    calibration_test1.h
 
 FORMS    += calibration.ui
+INCLUDEPATH+= C:/opencv/build/include/opencv \
+                   C:/opencv/build/include/opencv2 \
+                   C:/opencv/build/include
+LIBS+= -LC:/opencv/build/x64/vc12/lib \
+    -lopencv_world310d

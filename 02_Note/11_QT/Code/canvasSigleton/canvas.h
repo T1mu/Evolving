@@ -44,6 +44,8 @@ public:
     void setCanvasWidth(int w);
     void setCanvasHeight(int h);
     void initUi();
+    //缩放接口
+    void SetInitRatio(double zoom_ratio = 0.1,double move_ratio = 1);            //接口 用于设置缩放比例 移动比例
     //数据接口
     void SetMat(const Mat &mat);                //设置m_src_mat 和 m_src_pix 参数类型为Mat
     void SetMat(const QString &path);           //设置m_src_mat 和 m_src_pix 参数类型为QString
@@ -52,8 +54,7 @@ public:
     bool event(QEvent *event);                  //Qt事件分发
     void paintEvent(QPaintEvent *event);
     void wheelEvent(QWheelEvent *e);
-    //缩放接口
-    void SetInitRatio(double ratio);            //接口 用于设置缩放比例
+
 
     QPixmap Mat2Pix(const Mat &mat);
     enum  actionType {
@@ -94,13 +95,16 @@ private:
     QRect m_canvas_rect;
     double m_crt_zoom_ratio ;           //当前图与原图比例
     double m_zoom_ratio = 0.1;
+    double m_move_ratio = 1;
     QPoint m_single_offset;             //单次偏移
     QPoint m_all_offsets=QPoint(0,0);   //总偏移
 
     statusInfo m_statusInfo;
-    bool m_CanPAINT = false;
-    bool m_is_X_Edge = false;
-    bool m_is_Y_Edge = false;
+
+    //标志位
+    bool m_IsPAINTED = false;
+//    bool m_is_X_Edge = false;
+//    bool m_is_Y_Edge = false;
 
 
 };
