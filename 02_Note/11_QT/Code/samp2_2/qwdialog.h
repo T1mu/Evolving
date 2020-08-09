@@ -22,6 +22,11 @@ private slots:
 
     void on_chkBoxBold_clicked(bool checked);
 
+<<<<<<< HEAD
+=======
+    void setTextFontColor();
+
+>>>>>>> 8d46ddbe9569952aca86531a5ab0121d986f63e0
 private:
     Ui::QWDialog *ui;
 };

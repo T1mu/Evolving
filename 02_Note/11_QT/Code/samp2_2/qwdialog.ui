@@ -78,6 +78,14 @@
      </item>
      <item>
       <widget class="QPlainTextEdit" name="txtEdit">
+<<<<<<< HEAD
+=======
+       <property name="font">
+        <font>
+         <pointsize>58</pointsize>
+        </font>
+       </property>
+>>>>>>> 8d46ddbe9569952aca86531a5ab0121d986f63e0
        <property name="plainText">
         <string>HaloToto</string>
        </property>
@@ -113,5 +121,58 @@
   </layout>
  </widget>
  <resources/>
+<<<<<<< HEAD
  <connections/>
+=======
+ <connections>
+  <connection>
+   <sender>btnOK</sender>
+   <signal>clicked()</signal>
+   <receiver>QWDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>77</x>
+     <y>310</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>82</x>
+     <y>422</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>QWDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>180</x>
+     <y>307</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>186</x>
+     <y>413</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnExit</sender>
+   <signal>clicked()</signal>
+   <receiver>QWDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>324</x>
+     <y>311</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>325</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+>>>>>>> 8d46ddbe9569952aca86531a5ab0121d986f63e0
 </ui>
