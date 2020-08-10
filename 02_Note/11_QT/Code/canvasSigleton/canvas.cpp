@@ -114,7 +114,7 @@ void canvas::paintEvent(QPaintEvent *event)
     if(m_IsPAINTED==false)
     {
         QMessageBox mesg;
-        mesg.warning(this,"Can Not Pain","Can Not Find The File Imported!");
+        mesg.warning(this,"Can Not Paint","Can Not Find The File Imported!");
     }else{
         Q_UNUSED(event)
         QPainter painter(this);
