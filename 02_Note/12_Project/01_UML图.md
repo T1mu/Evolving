@@ -37,6 +37,9 @@ UML从考虑系统的不同角度出发，定义了**用况图**、**类图**、
 
 ## 1.3. 类图
 
+![图 1](../../images/ff765fb2fcb118da60d3efa46fe45502decd363a7ce41bf622ae6cb9618acb42.jpg)  
+
+
 在UML类图中，常见的有以下几种关系: **泛化**（Generalization）, **实现**（Realization），关联（Association)，聚合（Aggregation），组合(Composition)，依赖(Dependency)
 
 - 泛化（Generalization）  
@@ -77,3 +80,4 @@ UML从考虑系统的不同角度出发，定义了**用况图**、**类图**、
 - \#：表示protected（friendly也归入这类）
 
 因此，上图中的Employee类具有3个私有属性和一个公有方法。
+
