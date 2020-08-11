@@ -15,8 +15,7 @@ public:
     explicit Transparent(QWidget *parent = 0);
     void paintEvent(QPaintEvent *event);
     bool event(QEvent *event);
-    //接口
-        //设定横纵坐标在窗体上的相对坐标范围
+    //接口:设定横纵坐标在窗体上的相对坐标范围
     void setRelativeAbscissaRange(const int minX, const int maxX);
     void setRelativeOrdinateRange(const int minY, const int maxY);
 

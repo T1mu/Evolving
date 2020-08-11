@@ -46,7 +46,7 @@ void canvas::setCanvasHeight(const unsigned int h = 910)
 
 void canvas::initUi()
 {
-    this->setCanvasSize();
+    this->setCanvasSize(400, 400);
     this->setCursor(Qt::CrossCursor);                                   //设置鼠标样式
     this->SetRatio(0.1, 1.0, 3.0);                                      //设置缩放和移动比例
     m_canvas_rect=QRect(0,0,m_canvas_width,m_canvas_height);

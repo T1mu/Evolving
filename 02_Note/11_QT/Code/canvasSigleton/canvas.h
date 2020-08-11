@@ -45,7 +45,9 @@ public:
     void setCanvasHeight(const unsigned int h);
     void initUi();
     //缩放接口
-    void SetRatio(double zoom_ratio, double move_ratio, double max_ratio);            //接口 用于设置缩放比例 移动比例 放大率上限
+    void SetRatio(double zoom_ratio,
+                  double move_ratio,
+                  double max_ratio);            //接口 用于设置缩放比例 移动比例 放大率上限
     //数据接口
     void SetMat(const Mat &mat);                //设置m_src_mat 和 m_src_pix 参数类型为Mat
     void SetMat(const QString &path);           //设置m_src_mat 和 m_src_pix 参数类型为QString
@@ -105,8 +107,7 @@ private:
 
     //标志位
     bool m_IsPAINTED = false;
-//    bool m_is_X_Edge = false;
-//    bool m_is_Y_Edge = false;
+
 
 
 };
