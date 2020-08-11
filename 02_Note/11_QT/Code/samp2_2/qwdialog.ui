@@ -78,11 +78,14 @@
      </item>
      <item>
       <widget class="QPlainTextEdit" name="txtEdit">
+<<<<<<< HEAD
+=======
        <property name="font">
         <font>
          <pointsize>58</pointsize>
         </font>
        </property>
+>>>>>>> 8d46ddbe9569952aca86531a5ab0121d986f63e0
        <property name="plainText">
         <string>HaloToto</string>
        </property>
@@ -118,6 +121,9 @@
   </layout>
  </widget>
  <resources/>
+<<<<<<< HEAD
+ <connections/>
+=======
  <connections>
   <connection>
    <sender>btnOK</sender>
@@ -168,4 +174,5 @@
    </hints>
   </connection>
  </connections>
+>>>>>>> 8d46ddbe9569952aca86531a5ab0121d986f63e0
 </ui>
