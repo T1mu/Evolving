@@ -31,31 +31,30 @@ public:
     explicit canvas(QWidget *parent = 0);
     ~canvas();
     //界面接口
-    void setCanvasSize(const unsigned int width, const unsigned int height);
-    void setCanvasWidth(const unsigned int w);
-    void setCanvasHeight(const unsigned int h);
-    void initUi();
+	void initUi(int w, int h);
     //缩放接口
-    void SetRatio(double zoom_ratio,
+    void setRatio(double zoom_ratio,
                   double move_ratio,
                   double max_ratio);            //接口 用于设置缩放比例 移动比例 放大率上限
     //数据接口
-	void getMat(const cv::Mat &mat);            //设置m_src_mat 和 m_src_pix 参数类型为Mat
-    void getImg(const QString &path);           //设置m_src_mat 和 m_src_pix 参数类型为QString
-	void DisplayMat(const cv::Mat &mat);        //绘制m_src_pix 到画板上 并设置为 m_crt_pix
+	void getMat(const cv::Mat &mat);            //#接口 设置m_src_mat 和 m_src_pix 参数类型为Mat
+    void getImg(const QString &path);           //#接口 设置m_src_mat 和 m_src_pix 参数类型为QString
+	void readyDisplay(const cv::Mat &mat);			//绘制m_src_pix 到画板上 并设置为 m_crt_pix
 
 	//#imageData相关 共有方法
-	void getArray(const ushort* arrayData, int width, int height);	//获得一维数组,并将其设置为imgData.srcArray
-	void createArray(int width, int height);	
-	void writeArray();
+	void getArray(const ushort* arrayData, int width, int height);	//#接口:获得一维数组,并将其设置为imgData.srcArray
+	void createArrayBySelf(int width, int height);					//生成递增一维数组
+	void writeArray(ushort* array);									//将array输出到外部
+	void writeMat(const cv::Mat mat);
 
-    // 事件
-    bool event(QEvent *event);                  //Qt事件分发
+    // #事件
+    bool event(QEvent *event);                  //Qt事件集合分发
     void paintEvent(QPaintEvent *event);
     void wheelEvent(QWheelEvent *e);
 
 
 	QPixmap Mat2Pix(const cv::Mat &mat);
+	cv::Mat array2Mat(ushort* array, int w, int h);
     enum  actionType {
         None          = 0,
         Amplification ,
@@ -83,21 +82,21 @@ private:
 		double ratio;
 	};
 
-	//#imageData相关 结构信息
+	//#imageData相关 图像储存结构
 	struct imageData{
 		cv::Mat srcMat;
 		cv::Mat crtMat;
 		QPixmap srcPix;
 		QPixmap crtPix;
-		ushort *srcArray;	//一维数组指针
-		int width = -1;		//图像宽度
+		ushort *srcArray;		//一维数组指针
+		int width = -1;			//图像宽度
 		int height = -1;		//图像长度
-		int bytes = 16;		//图像深度
+		int bytes = 16;			//图像深度
 	};
 
     //界面相关
-    int m_canvas_width;
-    int m_canvas_height;
+//     int this->width();
+//     int this->height();
 
     Ui::canvas *ui;
 	
@@ -107,31 +106,22 @@ private:
 
 	//#绘制参数结构
 	struct drawParams{
-		QRect canvsRect;
-		double zoomRatio;
-		double zoomStepRatio = 0.1;
-		double moveRatio = 1;
-		double maxZoomRatio;
-		QPoint singOffset;
-		QPoint sumOffset = QPoint(0, 0);
-
-	};
+		QRect canvsRect;			//画板大小
+		double zoomRatio;			//缩放大小
+		double zoomStepRatio = 0.1;	//缩放改变率
+		double moveRatio = 1;		//移动比率
+		double maxZoomRatio;		//移动改变比率
+		QPoint singOffset;			//单次鼠标偏移距离
+		QPoint sumOffset = QPoint(0, 0);//最终偏移距离
+		};
     int m_action;                       //动作(放大,缩小,移动...)
-//	QRect m_drawParams->canvsRect;
-//	double m_drawParams->zoomRatio ;           //当前图与原图比例
-//	double m_drawParams->zoomStepRatio = 0.1;
-//    double m_drawParams->moveRatio = 1;
-//    double m_drawParams->maxZoomRatio ;
-//    QPoint m_drawParams->singOffset;             //单次偏移
-//    QPoint m_drawParams->sumOffset=QPoint(0,0);   //总偏移
-
-	// #结构私有成员
+	// #私有结构对象
 	imageData *m_imgData = new imageData();
 	bottomStatus m_status;
 	drawParams *m_drawParams = new drawParams(); 
 
     //标志位
-    bool m_IsPAINTED = false;
+    bool m_readyDisplay = false;
 };
 
 #endif // CANVAS_H

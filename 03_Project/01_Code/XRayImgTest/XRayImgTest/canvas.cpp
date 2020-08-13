@@ -6,15 +6,15 @@ canvas::canvas(QWidget *parent) :
     ui(new Ui::canvas)
 {
     ui->setupUi(this);
-    initUi();
-
+    initUi(910, 930);
 	//
-	createArray(30, 30);
-	writeArray();
+	createArrayBySelf(10, 10);
+	writeArray(m_imgData->srcArray);
+	writeMat(m_imgData->srcMat);
 	//
     this->getImg(QString("D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif"));
     //D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif
-    this->DisplayMat(m_imgData->srcMat);
+    this->readyDisplay(m_imgData->srcMat);
 
     this->setMouseTracking(true);
 }
@@ -24,45 +24,25 @@ canvas::~canvas()
     delete ui;
 }
 
-void canvas::setCanvasSize(const unsigned int width = 910,const unsigned int height = 930)
+void canvas::initUi(int h, int w)
 {
-    m_canvas_width=width;
-    m_canvas_height=height;
-    this->setMinimumSize(width,height);
-    this->setMaximumSize(width,height);
-}
 
-void canvas::setCanvasWidth(const unsigned int w = 910)
-{
-    m_canvas_width=w;
-    this->setMaximumWidth(w);
-    this->setMinimumWidth(w);
-}
-
-void canvas::setCanvasHeight(const unsigned int h = 910)
-{
-    m_canvas_height=h;
-    this->setMaximumHeight(h);
-    this->setMinimumHeight(h);
-
-}
-
-void canvas::initUi()
-{
-    this->setCanvasSize(910, 930);
-    this->setCursor(Qt::CrossCursor);                                   //设置鼠标样式
-    this->SetRatio(0.1, 1.0, 3.0);                                      //设置缩放和移动比例
-    m_drawParams->canvsRect=QRect(0,0,m_canvas_width,m_canvas_height);
+	this->setMinimumSize(h, w);
+	this->setMaximumSize(h, w);
+	this->setRatio(0.1, 1.0, 3.0);                                      //设置缩放和移动比例
+    
+    
+    m_drawParams->canvsRect=QRect(0,0,this->width(),this->height());
 
     //Ui界面底部控件位置的设置
     ui->ShortCutTipsLab->hide();
-    ui->label->setGeometry(0,m_canvas_height-20,m_canvas_width,20);
-    ui->helpBtn->setGeometry(m_canvas_width-ui->helpBtn->width(),m_canvas_height-20,ui->helpBtn->width(),20);
+    ui->label->setGeometry(0,this->height()-20,this->width(),20);
+    ui->helpBtn->setGeometry(this->width()-ui->helpBtn->width(),this->height()-20,ui->helpBtn->width(),20);
     ui->ShortCutTipsLab->setGeometry(ui->helpBtn->x()+ui->helpBtn->width()-ui->ShortCutTipsLab->width(),ui->helpBtn->y()-ui->ShortCutTipsLab->height(),
                                      ui->ShortCutTipsLab->width(),ui->ShortCutTipsLab->height());
 }
 
-void canvas::SetRatio(double zoom_ratio = 0.1, double move_ratio = 1.0, double max_ratio = 3.0)
+void canvas::setRatio(double zoom_ratio = 0.1, double move_ratio = 1.0, double max_ratio = 3.0)
 {
     if(max_ratio<0 || zoom_ratio<0 || max_ratio<0){
         QMessageBox box;
@@ -104,16 +84,18 @@ void canvas::getArray(const ushort* arrayData, int width, int height)
 	if (arrayData != NULL){
 		//拷贝传入实参数组内存到imgData的srcArray中
 		memcpy(m_imgData->srcArray, arrayData, sizeof(ushort)*width*height);
+		m_imgData->width = width;
+		m_imgData->height = height;
+		m_imgData->srcMat = array2Mat(m_imgData->srcArray,m_imgData->width,m_imgData->height);
 	}
 	else{
-		createArray(width, height);
+		createArrayBySelf(width, height);
 	}
-	
 }
 
-void canvas::DisplayMat(const cv::Mat &mat)
+void canvas::readyDisplay(const cv::Mat &mat)
 {
-    m_IsPAINTED = true;
+    m_readyDisplay = true;
     m_imgData->srcMat = mat;
     m_imgData->crtMat = mat;
     m_imgData->srcPix = Mat2Pix(mat);
@@ -124,7 +106,7 @@ void canvas::DisplayMat(const cv::Mat &mat)
     m_drawParams->zoomRatio = (double)this->width()/m_imgData->srcPix.width(); //设置缩放变量
 }
 
-void canvas::createArray(int width, int height)
+void canvas::createArrayBySelf(int width, int height)
 {
 	//生成渐变图像
 	int bytes = 16;
@@ -136,20 +118,21 @@ void canvas::createArray(int width, int height)
 			array[width*j + i] = (int)(((i + j) * ((1 << bytes) - 1.0) / (width + height))) % ((1 << bytes) - 1);
 		}
 	}
-	//设置imgData的成员信息:数组/长宽
+	//设置imgData的成员信息
 	m_imgData->srcArray = array;
 	m_imgData->width = width;
 	m_imgData->height = height;	
+	m_imgData->srcMat = array2Mat(m_imgData->srcArray, m_imgData->width, m_imgData->height);
 }
 
-void canvas::writeArray()
+void canvas::writeArray(ushort* array)
 {
 	QFile file("arrayInfo.txt");
 	if (file.open(QIODevice::WriteOnly))
 	{
 		QTextStream out(&file);
 		for (int i = 0; i < m_imgData->width*m_imgData->height; i++){
-			out << QString("%1").arg(m_imgData->srcArray[i], 5) << " ";
+			out << QString("%1").arg(array[i], 5) << " ";
 			if ((i + 1) % m_imgData->width == 0){
 				out << endl;
 			}
@@ -157,9 +140,27 @@ void canvas::writeArray()
 	}
 }
 
+void canvas::writeMat(const cv::Mat mat)
+{
+	QFile file("matInfo.txt");
+	if (file.open(QIODevice::WriteOnly))
+	{
+		QTextStream out(&file);
+		for (int i = 0; i < m_imgData->width*m_imgData->height; i++){
+			if (mat.isContinuous()){
+				out << QString("%1").arg(mat.at<ushort>(i), 5) << " ";
+				if ((i + 1) % m_imgData->width == 0){
+					out << endl;
+			}
+			
+			}
+		}
+	}
+}
+
 void canvas::paintEvent(QPaintEvent *event)
 {
-    if(m_IsPAINTED==false)
+    if(m_readyDisplay==false)
     {
         QMessageBox mesg;
         mesg.warning(this,"Can Not Paint","Can Not Find The File Imported!");
@@ -250,7 +251,7 @@ bool canvas::event(QEvent *event)
     static bool ctrlLefbtnPressed=false;
     static bool ctrlIsPressed=false;
     static QPoint PreDot;
-    //ctrl按下与松开的标志位设置
+    //#事件 键盘 ctrl按下与松开的标志位设置
     if(event->type()==QEvent::KeyPress){
         QKeyEvent *keyBoard = dynamic_cast<QKeyEvent* >(event);
         if(keyBoard->key()==Qt::Key_Control){
@@ -265,20 +266,19 @@ bool canvas::event(QEvent *event)
             QApplication::setOverrideCursor(Qt::CrossCursor);   //改回鼠标样式
         }
     }
-    //ctrl+0按下 设置初始缩放比例为1.0 即原图大小
+    //#事件 键盘 ctrl+0按下 设置初始缩放比例为1.0 即原图大小
     if(event->type()==QEvent::KeyPress){
         QKeyEvent *keyBoard = dynamic_cast<QKeyEvent* >(event);
         if(keyBoard->key()==Qt::Key_0 && ctrlIsPressed){        //ctrl+0 原图比例
-            SetRatio(1.0);
-//            qDebug()<<"setInitRatio=1.0";
+            setRatio(1.0);
             update();
         }
     }
-    //ctrl+1按下 设置缩放比例为布满画板
+    //#事件 键盘 ctrl+1按下 设置缩放比例为布满画板
     if(event->type()==QEvent::KeyPress){
         QKeyEvent *keyBoard = dynamic_cast<QKeyEvent* >(event);
         if(keyBoard->key()==Qt::Key_1 && ctrlIsPressed){
-            SetRatio(this->width()*1.0/m_imgData->srcPix.width());
+            setRatio(this->width()*1.0/m_imgData->srcPix.width());
 //            qDebug()<<"full of canvas";
             update();
         }
@@ -307,7 +307,12 @@ bool canvas::event(QEvent *event)
     if(event->type() == QEvent::MouseMove)              //移动图片
     {
         QMouseEvent *mouse = dynamic_cast<QMouseEvent* >(event);
-
+		if (m_drawParams->canvsRect.contains(mouse->pos())){
+			this->setCursor(Qt::CrossCursor);
+		}
+		else{
+			this->unsetCursor();
+		}
         //鼠标移动 记录单次偏移量
         if(ctrlLefbtnPressed){
             //qDebug() << QString("%1").arg(m_is_X_Edge);
@@ -322,7 +327,7 @@ bool canvas::event(QEvent *event)
             m_status.pos_x = m_imgStartX/m_drawParams->zoomRatio + mouse->pos().x()/m_drawParams->zoomRatio;  //计算缩放后的坐标
             m_status.pos_y = m_imgStartY/m_drawParams->zoomRatio + mouse->pos().y()/m_drawParams->zoomRatio;  //计算缩放后的坐标
             if(m_imgData->crtMat.data){
-                ushort* pxvec = m_imgData->crtMat.ptr<ushort>(m_status.pos_y); //每行的头地址
+                ushort* pxvec = m_imgData->crtMat.ptr<ushort>(m_status.pos_y);			//每行的头地址
                 m_status.value = pxvec[(int)m_status.pos_x];                            //获取地址的灰度值
             }
         }
@@ -340,11 +345,20 @@ QPixmap canvas::Mat2Pix(const cv::Mat &mat)
         tempMat.cols*tempMat.channels(),
         QImage::Format_Grayscale8);
     QPixmap imgPix = QPixmap::fromImage(img);
-    qDebug()<<"mat    Size:"<<mat.cols;
-    qDebug()<<"tempMatSize:"<<tempMat.cols;
-    qDebug()<<"img    Size:"<<img.size();
-    qDebug()<<"imgPix Size:"<<imgPix.size();
+
     return imgPix;
+}
+
+cv::Mat canvas::array2Mat(ushort* array, int w, int h)
+{
+	if (array == NULL){
+		QMessageBox box;
+		box.warning(this, "Array2Mat", "array is NULL!");
+	}
+	else{
+		cv::Mat mat = cv::Mat(w, h, CV_16UC1,array);
+		return mat;
+	}
 }
 
 void canvas::on_helpBtn_clicked(bool checked)
