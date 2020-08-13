@@ -1,31 +1,24 @@
-﻿生成启动时间为 2020/8/13 13:22:09。
+﻿生成启动时间为 2020/8/13 14:11:15。
      1>项目“C:\Users\Admin\Evolving\03_Project\01_Code\XRayImgTest\XRayImgTest\XRayImgTest.vcxproj”在节点 2 上(Build 个目标)。
      1>QtRccSetDependencies:
          "D:\10_Qt5.8.0\5.8\msvc2013_64\bin\rcc.exe" --list "XRayImgTest.qrc" > "x64\Debug\rcc_list.txt" 2> nul
        QtWork:
+         Uic'ing canvas.ui...
          Moc'ing canvas.h...
+         Moc'ing dragchartsigleton.h...
+         Moc'ing transparent.h...
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /ID:\10_Qt5.8.0\5.8\msvc2013_64\include /I.\GeneratedFiles\DeBug /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtCharts /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtCore /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtGui /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtANGLE /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtOpenGL /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtWidgets /Zi /nologo /W1 /WX- /MP /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CHARTS_LIB /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\DeBug\moc_XRayImgTest.cpp GeneratedFiles\DeBug\moc_canvas.cpp XRayImgTest.cpp canvas.cpp main.cpp
-         moc_XRayImgTest.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /ID:\10_Qt5.8.0\5.8\msvc2013_64\include /I.\GeneratedFiles\DeBug /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtCharts /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtCore /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtGui /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtANGLE /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtOpenGL /ID:\10_Qt5.8.0\5.8\msvc2013_64\include\QtWidgets /Zi /nologo /W1 /WX- /MP /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CHARTS_LIB /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\DeBug\moc_canvas.cpp GeneratedFiles\DeBug\moc_dragchartsigleton.cpp GeneratedFiles\DeBug\moc_transparent.cpp canvas.cpp
          moc_canvas.cpp
-         XRayImgTest.cpp
+         moc_dragchartsigleton.cpp
+         moc_transparent.cpp
          canvas.cpp
-         main.cpp
      1>C:\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (GeneratedFiles\DeBug\moc_canvas.cpp)
      1>C:\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (canvas.cpp)
      1>C:\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (GeneratedFiles\DeBug\moc_canvas.cpp)
      1>C:\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (canvas.cpp)
-     1>C:\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (XRayImgTest.cpp)
      1>C:\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (GeneratedFiles\DeBug\moc_canvas.cpp)
      1>C:\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (canvas.cpp)
-     1>C:\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (GeneratedFiles\DeBug\moc_XRayImgTest.cpp)
-     1>C:\opencv\build\include\opencv2/core/mat.hpp(1965): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (main.cpp)
-     1>C:\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (XRayImgTest.cpp)
-     1>C:\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (GeneratedFiles\DeBug\moc_XRayImgTest.cpp)
-     1>C:\opencv\build\include\opencv2/core/persistence.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (main.cpp)
-     1>C:\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (XRayImgTest.cpp)
-     1>C:\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (GeneratedFiles\DeBug\moc_XRayImgTest.cpp)
-     1>C:\opencv\build\include\opencv2/core/utility.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (main.cpp)
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Admin\Evolving\03_Project\01_Code\XRayImgTest\x64\Debug\\XRayImgTest.exe" /NOLOGO /LIBPATH:D:\10_Qt5.8.0\5.8\msvc2013_64\lib /LIBPATH:C:\opencv\build\x64\vc12\lib qtmaind.lib Qt5Chartsd.lib Qt5Cored.lib Qt5Guid.lib Qt5OpenGLd.lib opengl32.lib glu32.lib Qt5Widgetsd.lib opencv_world310.lib opencv_world310d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Admin\Evolving\03_Project\01_Code\XRayImgTest\x64\Debug\XRayImgTest.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Admin\Evolving\03_Project\01_Code\XRayImgTest\x64\Debug\XRayImgTest.lib" /MACHINE:X64 x64\Debug\canvas.obj
          x64\Debug\dragchartsigleton.obj
@@ -34,12 +27,13 @@
          x64\Debug\XRayImgTest.obj
          x64\Debug\qrc_XRayImgTest.obj
          x64\Debug\moc_XRayImgTest.obj
+         x64\Debug\moc_canvas.obj
          x64\Debug\moc_dragchartsigleton.obj
          x64\Debug\moc_transparent.obj
-         x64\Debug\moc_canvas.obj
+         LINK : 没有找到 C:\Users\Admin\Evolving\03_Project\01_Code\XRayImgTest\x64\Debug\\XRayImgTest.exe 或上一个增量链接没有生成它；正在执行完全链接
          XRayImgTest.vcxproj -> C:\Users\Admin\Evolving\03_Project\01_Code\XRayImgTest\x64\Debug\XRayImgTest.exe
      1>已完成生成项目“C:\Users\Admin\Evolving\03_Project\01_Code\XRayImgTest\XRayImgTest\XRayImgTest.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:04.05
+已用时间 00:00:03.98
