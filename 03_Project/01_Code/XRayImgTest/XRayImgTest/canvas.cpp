@@ -14,7 +14,7 @@ canvas::canvas(QWidget *parent) :
 	//
     this->getImg(QString("D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif"));
     //D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif
-    this->DisplayMat(m_src_mat);
+    this->DisplayMat(m_imgData->srcMat);
 
     this->setMouseTracking(true);
 }
@@ -81,8 +81,8 @@ void canvas::getMat(const cv::Mat &mat)
         mesg.warning(this, "SetMat_WARNING", "mat.data is EMPTY!");
     }
     else{
-        m_src_mat = mat;
-        m_src_pix = Mat2Pix(m_src_mat);
+        m_imgData->srcMat = mat;
+        m_imgData->srcPix = Mat2Pix(m_imgData->srcMat);
     }
 }
 
@@ -94,8 +94,8 @@ void canvas::getImg(const QString &path)
         QMessageBox mesg;
         mesg.warning(this, "SetMat_WARNING", "mat.data is EMPTY!");
     }else{
-        m_src_mat = mat;
-        m_src_pix = Mat2Pix(m_src_mat);
+        m_imgData->srcMat = mat;
+        m_imgData->srcPix = Mat2Pix(m_imgData->srcMat);
     }
 }
 
@@ -114,14 +114,14 @@ void canvas::getArray(const ushort* arrayData, int width, int height)
 void canvas::DisplayMat(const cv::Mat &mat)
 {
     m_IsPAINTED = true;
-    m_src_mat = mat;
-    m_crt_mat = mat;
-    m_src_pix = Mat2Pix(mat);
-    m_crt_pix = m_src_pix;
+    m_imgData->srcMat = mat;
+    m_imgData->crtMat = mat;
+    m_imgData->srcPix = Mat2Pix(mat);
+    m_imgData->crtPix = m_imgData->srcPix;
     m_status.depth = mat.depth()*8;
     m_status.width = mat.cols;
     m_status.height = mat.rows;
-    m_zoomRatio = (double)this->width()/m_src_pix.width(); //设置缩放变量
+    m_zoomRatio = (double)this->width()/m_imgData->srcPix.width(); //设置缩放变量
 }
 
 void canvas::createArray(int width, int height)
@@ -168,18 +168,18 @@ void canvas::paintEvent(QPaintEvent *event)
         QPainter painter(this);
 
         //获取源Mat信息
-        m_srcPixWidth = m_src_pix.width();
-        m_srcPixHeight = m_src_pix.height();
-        int crtWidth = m_zoomRatio* m_srcPixWidth;
-        int crtHeight = m_zoomRatio* m_srcPixHeight;
+        m_imgData->width = m_imgData->srcPix.width();
+        m_imgData->height = m_imgData->srcPix.height();
+        int crtWidth = m_zoomRatio* m_imgData->width;
+        int crtHeight = m_zoomRatio* m_imgData->height;
 
-        m_crt_pix = m_crt_pix.scaled(crtWidth, crtHeight, Qt::KeepAspectRatio);
+        m_imgData->crtPix = m_imgData->crtPix.scaled(crtWidth, crtHeight, Qt::KeepAspectRatio);
 
         if(m_action==canvas::Shrink)							//缩小
         {
             m_zoomRatio-= m_zoomStepRatio* m_zoomRatio;
-            if(m_zoomRatio< (double)this-> width()/ m_src_pix.width())
-                m_zoomRatio = (double)this->width()/ m_src_pix.width();
+            if(m_zoomRatio< (double)this-> width()/ m_imgData->srcPix.width())
+                m_zoomRatio = (double)this->width()/ m_imgData->srcPix.width();
         }
         else if(m_action==canvas::Amplification)				//放大
         {
@@ -189,38 +189,38 @@ void canvas::paintEvent(QPaintEvent *event)
         }
         if(m_action==canvas::Amplification || m_action==canvas::Shrink)			//更新图片
         {
-            crtWidth = m_zoomRatio *m_srcPixWidth;
-            crtHeight = m_zoomRatio *m_srcPixHeight;
-            m_crt_pix = m_src_pix;                                              //重新装载,因为之前的图片已经被缩放过
-            m_crt_pix = m_crt_pix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
+            crtWidth = m_zoomRatio *m_imgData->width;
+            crtHeight = m_zoomRatio *m_imgData->height;
+            m_imgData->crtPix = m_imgData->srcPix;                                              //重新装载,因为之前的图片已经被缩放过
+            m_imgData->crtPix = m_imgData->crtPix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
             m_action=canvas::None;
         }
 
         if(m_action==canvas::Move)                                          //移动 限制拖放不移出窗外
         {
-            if( (m_pix_x+this->width()<crtWidth || m_single_offset.x()>0) && (m_pix_x>0 || m_single_offset.x()<0))
+            if( (m_imgStartX+this->width()<crtWidth || m_single_offset.x()>0) && (m_imgStartX>0 || m_single_offset.x()<0))
                 m_all_offsets.setX(m_all_offsets.x()+m_single_offset.x());
-            if((m_pix_y+this->height()<crtHeight || m_single_offset.y()>0)&&(m_pix_y>0 || m_single_offset.y()<0))
+            if((m_imgStartY+this->height()<crtHeight || m_single_offset.y()>0)&&(m_imgStartY>0 || m_single_offset.y()<0))
                 m_all_offsets.setY(m_all_offsets.y()+m_single_offset.y());
             //qDebug()<<"=======总偏移的更新=======\n"<<m_all_offsets.x()<<"\n"<<m_all_offsets.y();
             m_action=canvas::None;
         }
         //    qDebug()<<"总偏移:"<<m_all_offsets.x();
-        m_pix_x = crtWidth/2 - this->width()/2 - m_all_offsets.x();
-        if(m_pix_x<0)
-            m_pix_x=0;
-        m_pix_y = crtHeight/2 - this->height()/2 - m_all_offsets.y();
-        if(m_pix_y<0)
-            m_pix_y=0;
-        if(m_pix_x+this->width()>crtWidth)
-            m_pix_x=crtWidth-this->width();
-        if(m_pix_y+this->width()>crtHeight){
-            m_pix_y=crtHeight-this->width();
+        m_imgStartX = crtWidth/2 - this->width()/2 - m_all_offsets.x();
+        if(m_imgStartX<0)
+            m_imgStartX=0;
+        m_imgStartY = crtHeight/2 - this->height()/2 - m_all_offsets.y();
+        if(m_imgStartY<0)
+            m_imgStartY=0;
+        if(m_imgStartX+this->width()>crtWidth)
+            m_imgStartX=crtWidth-this->width();
+        if(m_imgStartY+this->width()>crtHeight){
+            m_imgStartY=crtHeight-this->width();
         }
 
         //    qDebug()<<"==============绘制信息===============";
-        qDebug()<<"\n图像起始点x:"<<m_pix_x<<" 图像起始点y:"<<m_pix_y;
-        painter.drawTiledPixmap(0,0,this->width(),this->height(),m_crt_pix,m_pix_x,m_pix_y);             //绘画图形
+        qDebug()<<"\n图像起始点x:"<<m_imgStartX<<" 图像起始点y:"<<m_imgStartY;
+        painter.drawTiledPixmap(0,0,this->width(),this->height(),m_imgData->crtPix,m_imgStartX,m_imgStartY);             //绘画图形
 
         //更新label信息
         m_status.ratio = m_zoomRatio;
@@ -278,7 +278,7 @@ bool canvas::event(QEvent *event)
     if(event->type()==QEvent::KeyPress){
         QKeyEvent *keyBoard = dynamic_cast<QKeyEvent* >(event);
         if(keyBoard->key()==Qt::Key_1 && ctrlIsPressed){
-            SetRatio(this->width()*1.0/m_src_pix.width());
+            SetRatio(this->width()*1.0/m_imgData->srcPix.width());
 //            qDebug()<<"full of canvas";
             update();
         }
@@ -319,10 +319,10 @@ bool canvas::event(QEvent *event)
         }
         //计算缩放后的坐标 和坐标处的灰度值
         if(m_zoomRatio>0){
-            m_status.pos_x = m_pix_x/m_zoomRatio + mouse->pos().x()/m_zoomRatio;  //计算缩放后的坐标
-            m_status.pos_y = m_pix_y/m_zoomRatio + mouse->pos().y()/m_zoomRatio;  //计算缩放后的坐标
-            if(m_crt_mat.data){
-                ushort* pxvec = m_crt_mat.ptr<ushort>(m_status.pos_y); //每行的头地址
+            m_status.pos_x = m_imgStartX/m_zoomRatio + mouse->pos().x()/m_zoomRatio;  //计算缩放后的坐标
+            m_status.pos_y = m_imgStartY/m_zoomRatio + mouse->pos().y()/m_zoomRatio;  //计算缩放后的坐标
+            if(m_imgData->crtMat.data){
+                ushort* pxvec = m_imgData->crtMat.ptr<ushort>(m_status.pos_y); //每行的头地址
                 m_status.value = pxvec[(int)m_status.pos_x];                            //获取地址的灰度值
             }
         }
