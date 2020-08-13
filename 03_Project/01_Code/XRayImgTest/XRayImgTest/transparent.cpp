@@ -60,13 +60,16 @@ bool Transparent::event(QEvent *event)
         diffTopY = abs(mouse->pos().y() - m_top->y());
         if ((diffBottomX <= 7 && diffBottomY <= 7)|| bottomCanMove){
             m_pointerColor = Qt::red;
+			setCursor(Qt::SizeHorCursor);
             bottomHasPressed = true;
         }
         else if((diffTopX <= 7 && diffTopY <= 7)|| bottomCanMove){
             m_pointerColor = Qt::red;
+			setCursor(Qt::SizeHorCursor);
             topHasPressed = true;
         }else{
             m_pointerColor = Qt::blue;
+			unsetCursor();
             bottomHasPressed = false;
             topHasPressed = false;
         }

@@ -13,6 +13,8 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include <QRect>
+#include <iostream>
+#include <stdio.h>
 
 #pragma execution_character_set("utf-8")
 
@@ -29,6 +31,18 @@ struct bottomStatus{
     double pos_x;
     double pos_y;
     double ratio;
+};
+
+//图像成员
+struct imageData{
+	cv::Mat srcMat;
+	cv::Mat crtMat;
+	QPixmap srcPix;
+	QPixmap crtPix;		
+	ushort *srcArray;	//一维数组指针
+	int width=-1;	//图像宽度
+	int height=-1;	//图像长度
+	int bytes=16;		//图像深度
 };
 
 class canvas : public QWidget
@@ -48,9 +62,15 @@ public:
                   double move_ratio,
                   double max_ratio);            //接口 用于设置缩放比例 移动比例 放大率上限
     //数据接口
-	void getMat(const cv::Mat &mat);                //设置m_src_mat 和 m_src_pix 参数类型为Mat
+	void getMat(const cv::Mat &mat);            //设置m_src_mat 和 m_src_pix 参数类型为Mat
     void getImg(const QString &path);           //设置m_src_mat 和 m_src_pix 参数类型为QString
-	void DisplayMat(const cv::Mat &mat);            //绘制m_src_pix 到画板上 并设置为 m_crt_pix
+	void DisplayMat(const cv::Mat &mat);        //绘制m_src_pix 到画板上 并设置为 m_crt_pix
+
+	void getArray(const ushort* arrayData, int width, int height);	//获得一维数组,并将其设置为imgData.srcArray
+	void createArray(int width, int height);	
+
+	void writeArray();
+
     //事件
     bool event(QEvent *event);                  //Qt事件分发
     void paintEvent(QPaintEvent *event);
@@ -78,6 +98,8 @@ private:
     int m_canvas_height;
 
     Ui::canvas *ui;
+	//imageData相关
+	imageData *m_imgData = new imageData();
 
     //Mat相关
     cv::Mat m_src_mat;              //源Mat

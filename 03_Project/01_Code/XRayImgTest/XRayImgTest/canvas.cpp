@@ -8,6 +8,10 @@ canvas::canvas(QWidget *parent) :
     ui->setupUi(this);
     initUi();
 
+	//
+	createArray(30, 30);
+	writeArray();
+	//
     this->getImg(QString("D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif"));
     //D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif
     this->DisplayMat(m_src_mat);
@@ -95,6 +99,18 @@ void canvas::getImg(const QString &path)
     }
 }
 
+void canvas::getArray(const ushort* arrayData, int width, int height)
+{
+	if (arrayData != NULL){
+		//拷贝传入实参数组内存到imgData的srcArray中
+		memcpy(m_imgData->srcArray, arrayData, sizeof(ushort)*width*height);
+	}
+	else{
+		createArray(width, height);
+	}
+	
+}
+
 void canvas::DisplayMat(const cv::Mat &mat)
 {
     m_IsPAINTED = true;
@@ -106,6 +122,39 @@ void canvas::DisplayMat(const cv::Mat &mat)
     m_status.width = mat.cols;
     m_status.height = mat.rows;
     m_zoomRatio = (double)this->width()/m_src_pix.width(); //设置缩放变量
+}
+
+void canvas::createArray(int width, int height)
+{
+	//生成渐变图像
+	int bytes = 16;
+	ushort* array = new ushort[width*height];
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			array[width*j + i] = (int)(((i + j) * ((1 << bytes) - 1.0) / (width + height))) % ((1 << bytes) - 1);
+		}
+	}
+	//设置imgData的成员信息:数组/长宽
+	m_imgData->srcArray = array;
+	m_imgData->width = width;
+	m_imgData->height = height;	
+}
+
+void canvas::writeArray()
+{
+	QFile file("arrayInfo.txt");
+	if (file.open(QIODevice::WriteOnly))
+	{
+		QTextStream out(&file);
+		for (int i = 0; i < m_imgData->width*m_imgData->height; i++){
+			out << QString("%1").arg(m_imgData->srcArray[i], 5) << " ";
+			if ((i + 1) % m_imgData->width == 0){
+				out << endl;
+			}
+		}
+	}
 }
 
 void canvas::paintEvent(QPaintEvent *event)
