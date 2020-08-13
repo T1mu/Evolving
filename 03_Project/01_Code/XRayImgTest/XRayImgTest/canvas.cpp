@@ -52,7 +52,7 @@ void canvas::initUi()
     this->setCanvasSize(910, 930);
     this->setCursor(Qt::CrossCursor);                                   //设置鼠标样式
     this->SetRatio(0.1, 1.0, 3.0);                                      //设置缩放和移动比例
-    m_canvas_rect=QRect(0,0,m_canvas_width,m_canvas_height);
+    m_drawParams->canvsRect=QRect(0,0,m_canvas_width,m_canvas_height);
 
     //Ui界面底部控件位置的设置
     ui->ShortCutTipsLab->hide();
@@ -68,9 +68,9 @@ void canvas::SetRatio(double zoom_ratio = 0.1, double move_ratio = 1.0, double m
         QMessageBox box;
         box.warning(this,"WARNING","max_ratio/zoom_ratio/max_ratio Can Not Below 0!");
     }else{
-        this->m_zoomRatio = zoom_ratio;
-        this->m_moveRatio = move_ratio;
-        this->m_maxZoomRatio = max_ratio;
+        this->m_drawParams->zoomRatio = zoom_ratio;
+        this->m_drawParams->moveRatio = move_ratio;
+        this->m_drawParams->maxZoomRatio = max_ratio;
     }
 }
 
@@ -121,7 +121,7 @@ void canvas::DisplayMat(const cv::Mat &mat)
     m_status.depth = mat.depth()*8;
     m_status.width = mat.cols;
     m_status.height = mat.rows;
-    m_zoomRatio = (double)this->width()/m_imgData->srcPix.width(); //设置缩放变量
+    m_drawParams->zoomRatio = (double)this->width()/m_imgData->srcPix.width(); //设置缩放变量
 }
 
 void canvas::createArray(int width, int height)
@@ -170,27 +170,27 @@ void canvas::paintEvent(QPaintEvent *event)
         //获取源Mat信息
         m_imgData->width = m_imgData->srcPix.width();
         m_imgData->height = m_imgData->srcPix.height();
-        int crtWidth = m_zoomRatio* m_imgData->width;
-        int crtHeight = m_zoomRatio* m_imgData->height;
+        int crtWidth = m_drawParams->zoomRatio* m_imgData->width;
+        int crtHeight = m_drawParams->zoomRatio* m_imgData->height;
 
         m_imgData->crtPix = m_imgData->crtPix.scaled(crtWidth, crtHeight, Qt::KeepAspectRatio);
 
         if(m_action==canvas::Shrink)							//缩小
         {
-            m_zoomRatio-= m_zoomStepRatio* m_zoomRatio;
-            if(m_zoomRatio< (double)this-> width()/ m_imgData->srcPix.width())
-                m_zoomRatio = (double)this->width()/ m_imgData->srcPix.width();
+            m_drawParams->zoomRatio-= m_drawParams->zoomStepRatio* m_drawParams->zoomRatio;
+            if(m_drawParams->zoomRatio< (double)this-> width()/ m_imgData->srcPix.width())
+                m_drawParams->zoomRatio = (double)this->width()/ m_imgData->srcPix.width();
         }
         else if(m_action==canvas::Amplification)				//放大
         {
-            m_zoomRatio+=m_zoomStepRatio*m_zoomRatio;
-            if(m_zoomRatio > m_maxZoomRatio)
-                m_zoomRatio = m_maxZoomRatio;
+            m_drawParams->zoomRatio+=m_drawParams->zoomStepRatio*m_drawParams->zoomRatio;
+            if(m_drawParams->zoomRatio > m_drawParams->maxZoomRatio)
+                m_drawParams->zoomRatio = m_drawParams->maxZoomRatio;
         }
         if(m_action==canvas::Amplification || m_action==canvas::Shrink)			//更新图片
         {
-            crtWidth = m_zoomRatio *m_imgData->width;
-            crtHeight = m_zoomRatio *m_imgData->height;
+            crtWidth = m_drawParams->zoomRatio *m_imgData->width;
+            crtHeight = m_drawParams->zoomRatio *m_imgData->height;
             m_imgData->crtPix = m_imgData->srcPix;                                              //重新装载,因为之前的图片已经被缩放过
             m_imgData->crtPix = m_imgData->crtPix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
             m_action=canvas::None;
@@ -198,18 +198,18 @@ void canvas::paintEvent(QPaintEvent *event)
 
         if(m_action==canvas::Move)                                          //移动 限制拖放不移出窗外
         {
-            if( (m_imgStartX+this->width()<crtWidth || m_single_offset.x()>0) && (m_imgStartX>0 || m_single_offset.x()<0))
-                m_all_offsets.setX(m_all_offsets.x()+m_single_offset.x());
-            if((m_imgStartY+this->height()<crtHeight || m_single_offset.y()>0)&&(m_imgStartY>0 || m_single_offset.y()<0))
-                m_all_offsets.setY(m_all_offsets.y()+m_single_offset.y());
+            if( (m_imgStartX+this->width()<crtWidth || m_drawParams->singOffset.x()>0) && (m_imgStartX>0 || m_drawParams->singOffset.x()<0))
+                m_drawParams->sumOffset.setX(m_drawParams->sumOffset.x()+m_drawParams->singOffset.x());
+            if((m_imgStartY+this->height()<crtHeight || m_drawParams->singOffset.y()>0)&&(m_imgStartY>0 || m_drawParams->singOffset.y()<0))
+                m_drawParams->sumOffset.setY(m_drawParams->sumOffset.y()+m_drawParams->singOffset.y());
             //qDebug()<<"=======总偏移的更新=======\n"<<m_all_offsets.x()<<"\n"<<m_all_offsets.y();
             m_action=canvas::None;
         }
         //    qDebug()<<"总偏移:"<<m_all_offsets.x();
-        m_imgStartX = crtWidth/2 - this->width()/2 - m_all_offsets.x();
+        m_imgStartX = crtWidth/2 - this->width()/2 - m_drawParams->sumOffset.x();
         if(m_imgStartX<0)
             m_imgStartX=0;
-        m_imgStartY = crtHeight/2 - this->height()/2 - m_all_offsets.y();
+        m_imgStartY = crtHeight/2 - this->height()/2 - m_drawParams->sumOffset.y();
         if(m_imgStartY<0)
             m_imgStartY=0;
         if(m_imgStartX+this->width()>crtWidth)
@@ -223,7 +223,7 @@ void canvas::paintEvent(QPaintEvent *event)
         painter.drawTiledPixmap(0,0,this->width(),this->height(),m_imgData->crtPix,m_imgStartX,m_imgStartY);             //绘画图形
 
         //更新label信息
-        m_status.ratio = m_zoomRatio;
+        m_status.ratio = m_drawParams->zoomRatio;
         ui->label->setText(QString(" 深度: %1 | 大小: [%2*%3] | 缩放率: %4% | 坐标: (%5, %6) | 灰度值: %7")
                            .arg(m_status.depth)
                            .arg(m_status.width).arg(m_status.height)
@@ -287,7 +287,7 @@ bool canvas::event(QEvent *event)
     {
         QMouseEvent *mouse = dynamic_cast<QMouseEvent* >(event);
         //判断鼠标是否是左键按下,且鼠标位置是否在绘画区域
-        if(mouse->button()==Qt::LeftButton && m_canvas_rect.contains(mouse->pos()))
+        if(mouse->button()==Qt::LeftButton && m_drawParams->canvsRect.contains(mouse->pos()))
         {
             if(ctrlIsPressed){
                 ctrlLefbtnPressed=true;                 //ctrl+鼠标左键同时按下 设置标志位
@@ -311,16 +311,16 @@ bool canvas::event(QEvent *event)
         //鼠标移动 记录单次偏移量
         if(ctrlLefbtnPressed){
             //qDebug() << QString("%1").arg(m_is_X_Edge);
-            m_single_offset.setX((mouse->x() - PreDot.x())*m_moveRatio);
-            m_single_offset.setY((mouse->y() - PreDot.y())*m_moveRatio);
+            m_drawParams->singOffset.setX((mouse->x() - PreDot.x())*m_drawParams->moveRatio);
+            m_drawParams->singOffset.setY((mouse->y() - PreDot.y())*m_drawParams->moveRatio);
             //qDebug()<<mouse->x()<<PreDot.x()<<m_single_offset;
             PreDot = mouse->pos();
             m_action = canvas::Move;
         }
         //计算缩放后的坐标 和坐标处的灰度值
-        if(m_zoomRatio>0){
-            m_status.pos_x = m_imgStartX/m_zoomRatio + mouse->pos().x()/m_zoomRatio;  //计算缩放后的坐标
-            m_status.pos_y = m_imgStartY/m_zoomRatio + mouse->pos().y()/m_zoomRatio;  //计算缩放后的坐标
+        if(m_drawParams->zoomRatio>0){
+            m_status.pos_x = m_imgStartX/m_drawParams->zoomRatio + mouse->pos().x()/m_drawParams->zoomRatio;  //计算缩放后的坐标
+            m_status.pos_y = m_imgStartY/m_drawParams->zoomRatio + mouse->pos().y()/m_drawParams->zoomRatio;  //计算缩放后的坐标
             if(m_imgData->crtMat.data){
                 ushort* pxvec = m_imgData->crtMat.ptr<ushort>(m_status.pos_y); //每行的头地址
                 m_status.value = pxvec[(int)m_status.pos_x];                            //获取地址的灰度值

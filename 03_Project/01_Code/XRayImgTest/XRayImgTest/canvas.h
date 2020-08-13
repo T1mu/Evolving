@@ -100,32 +100,35 @@ private:
     int m_canvas_height;
 
     Ui::canvas *ui;
-	// #imageData相关 私有成员
-	imageData *m_imgData = new imageData();
-
-    //Mat相关
-    //cv::Mat m_imgData->srcMat;              //源Mat
-	//m_imgData->crtMat;              //当前显示Mat
-	cv::Mat m_changed_mat;          //修改后的Mat
-    //QPixmap m_imgData->srcPix;          //源
-    //QPixmap m_imgData->crtPix;          //当前
-    QPixmap m_changed_pix;      //修改
-
-    //pix相关
-    //int m_imgData->width;
-    //int m_imgData->height;
+	
     int m_imgStartX;            //图像起始点的x
     int m_imgStartY;            //图像起始点的y
     //动作相关
+
+	//#绘制参数结构
+	struct drawParams{
+		QRect canvsRect;
+		double zoomRatio;
+		double zoomStepRatio = 0.1;
+		double moveRatio = 1;
+		double maxZoomRatio;
+		QPoint singOffset;
+		QPoint sumOffset = QPoint(0, 0);
+
+	};
     int m_action;                       //动作(放大,缩小,移动...)
-    QRect m_canvas_rect;
-    double m_zoomRatio ;           //当前图与原图比例
-    double m_zoomStepRatio = 0.1;
-    double m_moveRatio = 1;
-    double m_maxZoomRatio ;
-    QPoint m_single_offset;             //单次偏移
-    QPoint m_all_offsets=QPoint(0,0);   //总偏移
+//	QRect m_drawParams->canvsRect;
+//	double m_drawParams->zoomRatio ;           //当前图与原图比例
+//	double m_drawParams->zoomStepRatio = 0.1;
+//    double m_drawParams->moveRatio = 1;
+//    double m_drawParams->maxZoomRatio ;
+//    QPoint m_drawParams->singOffset;             //单次偏移
+//    QPoint m_drawParams->sumOffset=QPoint(0,0);   //总偏移
+
+	// #结构私有成员
+	imageData *m_imgData = new imageData();
 	bottomStatus m_status;
+	drawParams *m_drawParams = new drawParams(); 
 
     //标志位
     bool m_IsPAINTED = false;
