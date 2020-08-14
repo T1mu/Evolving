@@ -65,7 +65,6 @@ void canvas::getArray(const ushort* arrayData, int width, int height)
 	}
 }
 
-
 void canvas::prepareDisplay()
 {
 	m_readyDisplay = true;
@@ -181,7 +180,7 @@ QPixmap canvas::Array8toPix()
 		return 0;
 	}
 	else{
-		//#TODO: 一次映射map()将ushort转为uchar 
+		//一次映射map()将ushort转为uchar 
 		//再将uchar转为QImage 再将Image转为QPixmap
 		QImage tempImg = QImage(m_imgData->_array8, m_imgData->_width, m_imgData->_height, QImage::Format_Indexed8);
 		QVector<QRgb> colorTable;
@@ -353,7 +352,7 @@ bool canvas::event(QEvent *event)
 	static bool ctrlLefbtnPressed = false;
 	static bool ctrlIsPressed = false;
 	static QPoint PreDot;
-	//#事件 键盘 ctrl按下与松开的标志位设置
+	// 键盘 ctrl按下与松开的标志位设置
 	if (event->type() == QEvent::KeyPress){
 		QKeyEvent *keyBoard = dynamic_cast<QKeyEvent*>(event);
 		if (keyBoard->key() == Qt::Key_Control){
@@ -368,7 +367,7 @@ bool canvas::event(QEvent *event)
 			setCursor(Qt::CrossCursor);   //改回鼠标样式
 		}
 	}
-	//#事件 键盘 ctrl+0按下 设置初始缩放比例为1.0 即原图大小
+	// 键盘 ctrl+0按下 设置初始缩放比例为1.0 即原图大小
 	if (event->type() == QEvent::KeyPress){
 		QKeyEvent *keyBoard = dynamic_cast<QKeyEvent*>(event);
 		if (keyBoard->key() == Qt::Key_0 && ctrlIsPressed){        //ctrl+0 原图比例
@@ -376,7 +375,7 @@ bool canvas::event(QEvent *event)
 			update();
 		}
 	}
-	//#事件 键盘 ctrl+1按下 设置缩放比例为布满画板
+	// 键盘 ctrl+1按下 设置缩放比例为布满画板
 	if (event->type() == QEvent::KeyPress){
 		QKeyEvent *keyBoard = dynamic_cast<QKeyEvent*>(event);
 		if (keyBoard->key() == Qt::Key_1 && ctrlIsPressed){

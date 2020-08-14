@@ -30,43 +30,39 @@ class canvas : public QWidget
 public:
 	explicit canvas(QWidget *parent = 0);
 	~canvas();
-	//界面接口
-	void initUi(int w, int h);		//设置大小 控件摆放位置
-	//缩放接口
+
+	void initUi(int w, int h);			//#界面:设置大小 控件摆放位置
 	void setRatio(double zoom_ratio,
 		double move_ratio,
-		double max_ratio);            //接口 用于设置缩放比例 移动比例 放大率上限
-	//初始化状态栏信息 缩放信息
-	void prepareDisplay();
-	//#imageData相关 共有方法
-	void getArray(const ushort* arrayData, int width, int height);	//#接口:获得一维数组,并将其设置为imgData.srcArray
-	void createArray16(int width, int height);					//生成递增一维数组
-	void writeArray(ushort* &array);									//将array输出到外部
-	void writeArray(uchar* &array);
-	void writeMat(const cv::Mat &mat);
+		double max_ratio);				//#处理: 用于设置缩放比例 移动比例 放大率上限
 
+	void prepareDisplay();				//#界面 准备工作
+
+	void getArray(const ushort* arrayData, int width, int height);		//#处理 获得一维数组,并将其设置为imgData.srcArray
+	void createArray16(int width, int height);							//#处理 生成递增一维数组
 	void calcMapTable(
 		int bottom = 0,
 		int top = 65535,
 		const int srcBytes = 16,
 		const int dstBytes = 8
-		);
+		);//#处理 计算灰度映射图
 	void Array16to8(int bottom = 0, int top = 65535);
 
-	//#测试函数 输出array Mat 到本地
+	//#测试 输出array Mat 到本地
 	void writeData(int width, int height);
+	void writeArray(ushort* &array);									//将array输出到外部
+	void writeArray(uchar* &array);
+	void writeMat(const cv::Mat &mat);
 
-	// #事件
-	bool event(QEvent *event);                  //Qt的事件分发集合
-	inline void paintEvent(QPaintEvent *event);
-	void wheelEvent(QWheelEvent *e);
 
-	//#储存格式转换 Mat2Pix
-	QPixmap Mat16toPix8(const cv::Mat &mat);
-	//#储存格式转换 Array2Mat
-	cv::Mat Array16toMat(ushort* array, int w, int h);
-	//#储存格式转换 Array2Pix
-	QPixmap Array8toPix();
+	bool event(QEvent *event);                  //#界面 Qt的事件分发集合
+	inline void paintEvent(QPaintEvent *event);	//#界面 绘制事件
+	void wheelEvent(QWheelEvent *e);			//#界面 滚轮
+
+
+	QPixmap Mat16toPix8(const cv::Mat &mat);	//#处理  Mat2Pix
+	cv::Mat Array16toMat(ushort* array, int w, int h);//#处理  Array2Mat
+	QPixmap Array8toPix();						//#处理  Array2Pix
 
 	enum  actionType {
 		None = 0,
@@ -83,7 +79,7 @@ public:
 
 private:
 
-	//状态栏的结构 所需信息
+	//#数据 状态栏struct
 	struct bottomStatus{
 		double width;
 		double height;
@@ -94,7 +90,7 @@ private:
 		double ratio;
 	};
 
-	//#imageData相关 图像储存结构
+	//#数据 图像struct
 	struct imageData{
 		cv::Mat _mat;
 		QPixmap _srcPix;
@@ -107,23 +103,25 @@ private:
 		int _bytes = 16;			//图像深度
 	};
 
-	//界面相关
+	//#界面
 	Ui::canvas *ui;
 	int m_imgStartX;            //图像起始点的x
 	int m_imgStartY;            //图像起始点的y
 
-	//#绘制参数结构
+	//#数据 绘制参数结构
 	struct drawParams{
 		QRect canvsRect;			//画板大小
 		double zoomRatio;			//缩放大小
 		double zoomStepRatio = 0.1;	//缩放改变率
-		double moveRatio = 1;		//移动比率
-		double maxZoomRatio;		//移动改变比率
+		double moveRatio = 1;		//移动改变比率
+		double maxZoomRatio;		//最大放大率
 		QPoint singOffset;			//单次鼠标偏移距离
 		QPoint sumOffset = QPoint(0, 0);//最终偏移距离
 	};
+	//#数据 操作enum
 	int m_action;                       //动作(放大,缩小,移动...)
-	// #私有结构对象
+
+
 	imageData *m_imgData = new imageData();
 	bottomStatus m_status;
 	drawParams *m_drawParams = new drawParams();
