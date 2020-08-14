@@ -8,14 +8,13 @@ canvas::canvas(QWidget *parent) :
     ui->setupUi(this);
     initUi(910, 930);
 	//
-	createArrayBySelf(10, 10);
-	writeArray(m_imgData->srcArray);
-	writeMat(m_imgData->srcMat);
+	writeData(20, 20);
 	//
-    this->getImg(QString("D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif"));
-    //D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif
-    this->readyDisplay(m_imgData->srcMat);
+	getArray(NULL, 3072, 3072);
+    //this->getImg(QString("D:\\2020.6.3\\xRayChipCounter\\mode2\\2020-06-08_09-52-29\\24.tif"));
 
+    //this->readyDisplay(m_imgData->_mat);
+	prepareDisplay();
     this->setMouseTracking(true);
 }
 
@@ -30,8 +29,6 @@ void canvas::initUi(int h, int w)
 	this->setMinimumSize(h, w);
 	this->setMaximumSize(h, w);
 	this->setRatio(0.1, 1.0, 3.0);                                      //设置缩放和移动比例
-    
-    
     m_drawParams->canvsRect=QRect(0,0,this->width(),this->height());
 
     //Ui界面底部控件位置的设置
@@ -54,59 +51,69 @@ void canvas::setRatio(double zoom_ratio = 0.1, double move_ratio = 1.0, double m
     }
 }
 
-void canvas::getMat(const cv::Mat &mat)
-{
-    if(!mat.data){
-        QMessageBox mesg;
-        mesg.warning(this, "SetMat_WARNING", "mat.data is EMPTY!");
-    }
-    else{
-        m_imgData->srcMat = mat;
-        m_imgData->srcPix = Mat2Pix(m_imgData->srcMat);
-    }
-}
-
-void canvas::getImg(const QString &path)
-{
-	cv::Mat mat = cv::imread(path.toStdString(), CV_LOAD_IMAGE_UNCHANGED);
-    if (!mat.data)
-    {
-        QMessageBox mesg;
-        mesg.warning(this, "SetMat_WARNING", "mat.data is EMPTY!");
-    }else{
-        m_imgData->srcMat = mat;
-        m_imgData->srcPix = Mat2Pix(m_imgData->srcMat);
-    }
-}
+// void canvas::getMat(const cv::Mat &mat)
+// {
+//     if(!mat.data){
+//         QMessageBox mesg;
+//         mesg.warning(this, "SetMat_WARNING", "mat.data is EMPTY!");
+//     }
+//     else{
+//         m_imgData->_mat = mat;
+//         m_imgData->_srcPix = Mat16toPix8(m_imgData->_mat);
+//     }
+// }
+// 
+// void canvas::getImg(const QString &path)
+// {
+// 	cv::Mat mat = cv::imread(path.toStdString(), CV_LOAD_IMAGE_UNCHANGED);
+//     if (!mat.data)
+//     {
+//         QMessageBox mesg;
+//         mesg.warning(this, "SetMat_WARNING", "mat.data is EMPTY!");
+//     }else{
+//         m_imgData->_mat = mat;
+//         m_imgData->_srcPix = Mat16toPix8(m_imgData->_mat);
+//     }
+// }
 
 void canvas::getArray(const ushort* arrayData, int width, int height)
 {
 	if (arrayData != NULL){
 		//拷贝传入实参数组内存到imgData的srcArray中
-		memcpy(m_imgData->srcArray, arrayData, sizeof(ushort)*width*height);
-		m_imgData->width = width;
-		m_imgData->height = height;
-		m_imgData->srcMat = array2Mat(m_imgData->srcArray,m_imgData->width,m_imgData->height);
+		memcpy(m_imgData->_array16, arrayData, sizeof(ushort)*width*height);
+		m_imgData->_width = width;
+		m_imgData->_height = height;
+		m_imgData->_mat = Array16toMat(m_imgData->_array16,m_imgData->_width,m_imgData->_height);
+		m_imgData->_srcPix = Array8toPix();
+		m_imgData->_crtPix = QPixmap(m_imgData->_srcPix);
 	}
 	else{
-		createArrayBySelf(width, height);
+		createArray16(width, height);
 	}
 }
 
-void canvas::readyDisplay(const cv::Mat &mat)
+// void canvas::readyDisplay(const cv::Mat &mat)
+// {
+//     m_readyDisplay = true;
+//     m_imgData->_mat = mat;
+//     m_imgData->_srcPix = Mat16toPix8(mat);
+//     m_imgData->_crtPix = m_imgData->_srcPix;
+//     m_status.depth = m_imgData->_bytes;
+//     m_status.width = m_imgData->_width;
+//     m_status.height = m_imgData->_height;
+//     m_drawParams->zoomRatio = (double)this->width()/m_imgData->_srcPix.width(); //设置缩放变量
+// }
+
+void canvas::prepareDisplay()
 {
-    m_readyDisplay = true;
-    m_imgData->srcMat = mat;
-    m_imgData->crtMat = mat;
-    m_imgData->srcPix = Mat2Pix(mat);
-    m_imgData->crtPix = m_imgData->srcPix;
-    m_status.depth = mat.depth()*8;
-    m_status.width = mat.cols;
-    m_status.height = mat.rows;
-    m_drawParams->zoomRatio = (double)this->width()/m_imgData->srcPix.width(); //设置缩放变量
+	m_readyDisplay = true;
+	m_status.depth = m_imgData->_bytes;
+	m_status.width = m_imgData->_width;
+	m_status.height = m_imgData->_height;
+	m_drawParams->zoomRatio = (double)this->width() / m_imgData->_srcPix.width(); //设置缩放变量
 }
 
-void canvas::createArrayBySelf(int width, int height)
+void canvas::createArray16(int width=3072, int height=3072)
 {
 	//生成渐变图像
 	int bytes = 16;
@@ -119,43 +126,102 @@ void canvas::createArrayBySelf(int width, int height)
 		}
 	}
 	//设置imgData的成员信息
-	m_imgData->srcArray = array;
-	m_imgData->width = width;
-	m_imgData->height = height;	
-	m_imgData->srcMat = array2Mat(m_imgData->srcArray, m_imgData->width, m_imgData->height);
+	m_imgData->_array16 = array;
+	m_imgData->_width = width;
+	m_imgData->_height = height;	
+	m_imgData->_mat = Array16toMat(m_imgData->_array16, m_imgData->_width, m_imgData->_height);
+	Array16toArray8();
+	m_imgData->_srcPix = Array8toPix();
+	m_imgData->_crtPix = QPixmap(m_imgData->_srcPix);
 }
 
-void canvas::writeArray(ushort* array)
+void canvas::writeArray(ushort* &array16)
 {
-	QFile file("arrayInfo.txt");
+
+	QFile file("infoArray16.txt");
 	if (file.open(QIODevice::WriteOnly))
 	{
 		QTextStream out(&file);
-		for (int i = 0; i < m_imgData->width*m_imgData->height; i++){
-			out << QString("%1").arg(array[i], 5) << " ";
-			if ((i + 1) % m_imgData->width == 0){
+		for (int i = 0; i < m_imgData->_width*m_imgData->_height; i++){
+			out << QString("%1").arg(array16[i], 5) << " ";
+			if ((i + 1) % m_imgData->_width == 0){
 				out << endl;
 			}
 		}
 	}
 }
 
-void canvas::writeMat(const cv::Mat mat)
+void canvas::writeArray(uchar* &array8)
 {
-	QFile file("matInfo.txt");
+	QFile file("infoArray8.txt");
 	if (file.open(QIODevice::WriteOnly))
 	{
 		QTextStream out(&file);
-		for (int i = 0; i < m_imgData->width*m_imgData->height; i++){
-			if (mat.isContinuous()){
-				out << QString("%1").arg(mat.at<ushort>(i), 5) << " ";
-				if ((i + 1) % m_imgData->width == 0){
-					out << endl;
-			}
-			
+		for (int i = 0; i < m_imgData->_width*m_imgData->_height; i++){
+			out << QString("%1").arg(array8[i], 3) << " ";
+			if ((i + 1) % m_imgData->_width == 0){
+				out << endl;
 			}
 		}
 	}
+}
+
+void canvas::writeMat(const cv::Mat &mat)
+{
+	QFile file("infoMat.txt");
+	if (file.open(QIODevice::WriteOnly))
+	{
+		QTextStream out(&file);
+		for (int i = 0; i < m_imgData->_width*m_imgData->_height; i++){
+			if (mat.isContinuous()){
+				out << QString("%1").arg(mat.at<ushort>(i), 5) << " ";
+				if ((i + 1) % m_imgData->_width == 0){
+					out << endl;
+				}
+			}
+		}
+	}
+}
+
+void canvas::calcMappingTable(int bottom = 0, int top = 65535, const int srcBytes = 16, const int dstBytes = 8)
+{
+	if (m_imgData->_mapTable != NULL){
+		m_imgData->_mapTable = NULL;
+	}
+	if (bottom > top)
+	{
+		int temp = bottom;
+		bottom = top;
+		top = temp;
+	}
+	int srcRange = (1 << srcBytes) - 1;
+	int dstRange = (1 << dstBytes) - 1;
+	m_imgData->_mapTable = new int[srcRange];
+
+	for (int i = 0; i < srcRange; i++){
+		if (i <= bottom)
+			m_imgData->_mapTable[i] = 0;
+		else if (i>bottom && i < top)
+			m_imgData->_mapTable[i] = (i - bottom)* 1.0 * dstRange / (top - bottom);
+		else{
+			m_imgData->_mapTable[i] = dstRange;
+		}
+	}
+}
+
+void canvas::Array16toArray8()
+{
+	if (m_imgData->_mapTable == nullptr){
+		calcMappingTable();
+	}
+	if (m_imgData->_array8 != NULL){
+		m_imgData->_array8 = NULL;
+	}
+	m_imgData->_array8 = new uchar[m_imgData->_width*m_imgData->_height];
+	for (int i = 0; i < m_imgData->_width*m_imgData->_height; i++){
+		m_imgData->_array8[i] = m_imgData->_mapTable[(int)m_imgData->_array16[i]];	//m_imgData->array8 赋值成功
+	}
+
 }
 
 void canvas::paintEvent(QPaintEvent *event)
@@ -169,18 +235,18 @@ void canvas::paintEvent(QPaintEvent *event)
         QPainter painter(this);
 
         //获取源Mat信息
-        m_imgData->width = m_imgData->srcPix.width();
-        m_imgData->height = m_imgData->srcPix.height();
-        int crtWidth = m_drawParams->zoomRatio* m_imgData->width;
-        int crtHeight = m_drawParams->zoomRatio* m_imgData->height;
+        m_imgData->_width = m_imgData->_srcPix.width();
+        m_imgData->_height = m_imgData->_srcPix.height();
+        int crtWidth = m_drawParams->zoomRatio* m_imgData->_width;
+        int crtHeight = m_drawParams->zoomRatio* m_imgData->_height;
 
-        m_imgData->crtPix = m_imgData->crtPix.scaled(crtWidth, crtHeight, Qt::KeepAspectRatio);
+        m_imgData->_crtPix = m_imgData->_crtPix.scaled(crtWidth, crtHeight, Qt::KeepAspectRatio);
 
         if(m_action==canvas::Shrink)							//缩小
         {
             m_drawParams->zoomRatio-= m_drawParams->zoomStepRatio* m_drawParams->zoomRatio;
-            if(m_drawParams->zoomRatio< (double)this-> width()/ m_imgData->srcPix.width())
-                m_drawParams->zoomRatio = (double)this->width()/ m_imgData->srcPix.width();
+            if(m_drawParams->zoomRatio< (double)this-> width()/ m_imgData->_srcPix.width())
+                m_drawParams->zoomRatio = (double)this->width()/ m_imgData->_srcPix.width();
         }
         else if(m_action==canvas::Amplification)				//放大
         {
@@ -190,10 +256,10 @@ void canvas::paintEvent(QPaintEvent *event)
         }
         if(m_action==canvas::Amplification || m_action==canvas::Shrink)			//更新图片
         {
-            crtWidth = m_drawParams->zoomRatio *m_imgData->width;
-            crtHeight = m_drawParams->zoomRatio *m_imgData->height;
-            m_imgData->crtPix = m_imgData->srcPix;                                              //重新装载,因为之前的图片已经被缩放过
-            m_imgData->crtPix = m_imgData->crtPix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
+            crtWidth = m_drawParams->zoomRatio *m_imgData->_width;
+            crtHeight = m_drawParams->zoomRatio *m_imgData->_height;
+            m_imgData->_crtPix = m_imgData->_srcPix;                                              //重新装载,因为之前的图片已经被缩放过
+            m_imgData->_crtPix = m_imgData->_crtPix.scaled(crtWidth, crtHeight,Qt::KeepAspectRatio);
             m_action=canvas::None;
         }
 
@@ -221,7 +287,7 @@ void canvas::paintEvent(QPaintEvent *event)
 
         //    qDebug()<<"==============绘制信息===============";
         qDebug()<<"\n图像起始点x:"<<m_imgStartX<<" 图像起始点y:"<<m_imgStartY;
-        painter.drawTiledPixmap(0,0,this->width(),this->height(),m_imgData->crtPix,m_imgStartX,m_imgStartY);             //绘画图形
+        painter.drawTiledPixmap(0,0,this->width(),this->height(),m_imgData->_crtPix,m_imgStartX,m_imgStartY);             //绘画图形
 
         //更新label信息
         m_status.ratio = m_drawParams->zoomRatio;
@@ -278,7 +344,7 @@ bool canvas::event(QEvent *event)
     if(event->type()==QEvent::KeyPress){
         QKeyEvent *keyBoard = dynamic_cast<QKeyEvent* >(event);
         if(keyBoard->key()==Qt::Key_1 && ctrlIsPressed){
-            setRatio(this->width()*1.0/m_imgData->srcPix.width());
+            setRatio(this->width()*1.0/m_imgData->_srcPix.width());
 //            qDebug()<<"full of canvas";
             update();
         }
@@ -311,7 +377,7 @@ bool canvas::event(QEvent *event)
 			this->setCursor(Qt::CrossCursor);
 		}
 		else{
-			this->unsetCursor();
+			this->setCursor(Qt::ArrowCursor);
 		}
         //鼠标移动 记录单次偏移量
         if(ctrlLefbtnPressed){
@@ -326,8 +392,8 @@ bool canvas::event(QEvent *event)
         if(m_drawParams->zoomRatio>0){
             m_status.pos_x = m_imgStartX/m_drawParams->zoomRatio + mouse->pos().x()/m_drawParams->zoomRatio;  //计算缩放后的坐标
             m_status.pos_y = m_imgStartY/m_drawParams->zoomRatio + mouse->pos().y()/m_drawParams->zoomRatio;  //计算缩放后的坐标
-            if(m_imgData->crtMat.data){
-                ushort* pxvec = m_imgData->crtMat.ptr<ushort>(m_status.pos_y);			//每行的头地址
+            if(m_imgData->_mat.data){
+				ushort* pxvec = m_imgData->_mat.ptr<ushort>(m_status.pos_y);			//每行的头地址
                 m_status.value = pxvec[(int)m_status.pos_x];                            //获取地址的灰度值
             }
         }
@@ -336,7 +402,7 @@ bool canvas::event(QEvent *event)
     return QWidget::event(event);
 }
 
-QPixmap canvas::Mat2Pix(const cv::Mat &mat)
+QPixmap canvas::Mat16toPix8(const cv::Mat &mat)
 {
 	cv::Mat tempMat;
     mat.convertTo(tempMat, CV_8UC1,255/65535.0,0);	//将原图转换成CV_8U
@@ -349,15 +415,37 @@ QPixmap canvas::Mat2Pix(const cv::Mat &mat)
     return imgPix;
 }
 
-cv::Mat canvas::array2Mat(ushort* array, int w, int h)
+cv::Mat canvas::Array16toMat(ushort* array, int w, int h)
 {
 	if (array == NULL){
 		QMessageBox box;
-		box.warning(this, "Array2Mat", "array is NULL!");
+		box.warning(this, "Array2Mat", "array16 is NULL!");
 	}
 	else{
-		cv::Mat mat = cv::Mat(w, h, CV_16UC1,array);
+		cv::Mat mat = cv::Mat(w, h, CV_16UC1, array);
 		return mat;
+	}
+}
+
+QPixmap canvas::Array8toPix()
+{
+	if (m_imgData->_array8 == NULL){
+		QMessageBox box;
+		box.warning(this, "Array8toPix", "array8 is NULL");
+		return 0;
+	}
+	else{
+		//#TODO: 一次映射map()将ushort转为uchar 
+		//再将uchar转为QImage 再将Image转为QPixmap
+		Array16toArray8();
+		QImage tempImg = QImage(m_imgData->_array8, m_imgData->_width, m_imgData->_height, QImage::Format_Indexed8);
+		QVector<QRgb> colorTable;
+		for (int k = 0; k < 256; ++k) {
+			colorTable.push_back(qRgb(k, k, k));
+		}
+		tempImg.setColorTable(colorTable);
+		QPixmap tempPix = QPixmap::fromImage(tempImg);
+		return tempPix;
 	}
 }
 

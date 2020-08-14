@@ -37,32 +37,44 @@ public:
                   double move_ratio,
                   double max_ratio);            //接口 用于设置缩放比例 移动比例 放大率上限
     //数据接口
-	void getMat(const cv::Mat &mat);            //#接口 设置m_src_mat 和 m_src_pix 参数类型为Mat
-    void getImg(const QString &path);           //#接口 设置m_src_mat 和 m_src_pix 参数类型为QString
-	void readyDisplay(const cv::Mat &mat);			//绘制m_src_pix 到画板上 并设置为 m_crt_pix
+// 	void getMat(const cv::Mat &mat);            //#接口 设置m_src_mat 和 m_src_pix 参数类型为Mat
+//     void getImg(const QString &path);           //#接口 设置m_src_mat 和 m_src_pix 参数类型为QString
+//	void readyDisplay(const cv::Mat &mat);			//绘制m_src_pix 到画板上 并设置为 m_crt_pix
+	void prepareDisplay();
 
 	//#imageData相关 共有方法
 	void getArray(const ushort* arrayData, int width, int height);	//#接口:获得一维数组,并将其设置为imgData.srcArray
-	void createArrayBySelf(int width, int height);					//生成递增一维数组
-	void writeArray(ushort* array);									//将array输出到外部
-	void writeMat(const cv::Mat mat);
+	void createArray16(int width, int height);					//生成递增一维数组
+	void writeArray(ushort* &array);									//将array输出到外部
+	void writeArray(uchar* &array);
+	void writeMat(const cv::Mat &mat);
+	void calcMappingTable(int bottom, int top, const int srcBytes, const int dstBytes);
+	void Array16toArray8();
+
+	//#测试函数 输出array Mat 到本地
+	void writeData(int width, int height){
+		createArray16(width, height);
+		writeArray(m_imgData->_array16);
+		writeArray(m_imgData->_array8);
+		writeMat(m_imgData->_mat);
+	}
 
     // #事件
     bool event(QEvent *event);                  //Qt事件集合分发
     void paintEvent(QPaintEvent *event);
     void wheelEvent(QWheelEvent *e);
 
+	//#储存格式转换 Mat2Pix
+	QPixmap Mat16toPix8(const cv::Mat &mat);	
+	//#储存格式转换 Array2Mat
+	cv::Mat Array16toMat(ushort* array, int w, int h);
+	//#储存格式转换 Array2Pix
+	QPixmap Array8toPix();
 
-	QPixmap Mat2Pix(const cv::Mat &mat);
-	cv::Mat array2Mat(ushort* array, int w, int h);
     enum  actionType {
         None          = 0,
         Amplification ,
         Shrink,
-        Lift,
-        Right,
-        Up,
-        Down,
         Move
     };
 
@@ -84,14 +96,15 @@ private:
 
 	//#imageData相关 图像储存结构
 	struct imageData{
-		cv::Mat srcMat;
-		cv::Mat crtMat;
-		QPixmap srcPix;
-		QPixmap crtPix;
-		ushort *srcArray;		//一维数组指针
-		int width = -1;			//图像宽度
-		int height = -1;		//图像长度
-		int bytes = 16;			//图像深度
+		cv::Mat _mat;
+		QPixmap _srcPix;
+		QPixmap _crtPix;
+		int *_mapTable=nullptr;
+		ushort *_array16 = nullptr;		//一维数组指针
+		uchar *_array8=nullptr;
+		int _width = -1;			//图像宽度
+		int _height = -1;		//图像长度
+		int _bytes = 16;			//图像深度
 	};
 
     //界面相关
