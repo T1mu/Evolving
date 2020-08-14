@@ -36,10 +36,7 @@ public:
     void setRatio(double zoom_ratio,
                   double move_ratio,
                   double max_ratio);            //接口 用于设置缩放比例 移动比例 放大率上限
-    //数据接口
-// 	void getMat(const cv::Mat &mat);            //#接口 设置m_src_mat 和 m_src_pix 参数类型为Mat
-//     void getImg(const QString &path);           //#接口 设置m_src_mat 和 m_src_pix 参数类型为QString
-//	void readyDisplay(const cv::Mat &mat);			//绘制m_src_pix 到画板上 并设置为 m_crt_pix
+	//初始化状态栏信息 缩放信息
 	void prepareDisplay();
 
 	//#imageData相关 共有方法
@@ -48,8 +45,13 @@ public:
 	void writeArray(ushort* &array);									//将array输出到外部
 	void writeArray(uchar* &array);
 	void writeMat(const cv::Mat &mat);
-	void calcMappingTable(int bottom, int top, const int srcBytes, const int dstBytes);
-	void Array16toArray8();
+	void calcMapTable(
+		int bottom = 0, 
+		int top = 65535, 
+		const int srcBytes = 16, 
+		const int dstBytes = 8
+		);
+	void Array16to8(int bottom = 0, int top = 65535);
 
 	//#测试函数 输出array Mat 到本地
 	void writeData(int width, int height){
@@ -60,7 +62,7 @@ public:
 	}
 
     // #事件
-    bool event(QEvent *event);                  //Qt事件集合分发
+    bool event(QEvent *event);                  //Qt的事件分发集合
     void paintEvent(QPaintEvent *event);
     void wheelEvent(QWheelEvent *e);
 
@@ -80,6 +82,8 @@ public:
 
 private slots:
     void on_helpBtn_clicked(bool checked);
+public slots:
+	void getMapRange(const int bottom, const int top);
 
 private:
 

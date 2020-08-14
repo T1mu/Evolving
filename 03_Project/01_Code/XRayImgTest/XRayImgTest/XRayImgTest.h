@@ -15,6 +15,7 @@ public:
 
 	//初始化控件摆放位置
 	void initUI();
+	void initConnect();
 private:
 	Ui::XRayImgTestClass ui;
 	canvas *canvs;

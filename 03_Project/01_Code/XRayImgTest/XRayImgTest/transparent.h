@@ -18,9 +18,8 @@ public:
     //接口:设定横纵坐标在窗体上的相对坐标范围
     void setRelativeAbscissaRange(const int minX, const int maxX);
     void setRelativeOrdinateRange(const int minY, const int maxY);
-
 signals:
-    void sendMappingRange(const double bottom, const double top);
+    void sendMapRange(const int bottom, const int top);
 public slots:
 private:
     // Relative coordinates 相对窗体表格的坐标范围

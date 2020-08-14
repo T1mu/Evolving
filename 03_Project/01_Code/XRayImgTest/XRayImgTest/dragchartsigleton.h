@@ -30,10 +30,11 @@ public:
                       const qreal Xmax,
                       const qreal Ymin,
                       const qreal Ymax);
+	Transparent* trans;
 private:
     Ui::dragChartSigleton *ui;
     //
-    Transparent* trans;
+
     //图标相关
     QChart *chart;
     QChartView *view;

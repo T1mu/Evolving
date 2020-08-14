@@ -80,8 +80,8 @@ bool Transparent::event(QEvent *event)
                 m_bottom->setX(relativeAbscissaRange[1]);
             }else{
                 m_bottom->setX(mouse->pos().x());
-                emit sendMappingRange(relativeCoordinateValueMapTo16Bit((double)m_bottom->x()),
-                                      relativeCoordinateValueMapTo16Bit((double)m_top->x()));
+                emit sendMapRange((int)relativeCoordinateValueMapTo16Bit((double)m_bottom->x()),
+                                      (int)relativeCoordinateValueMapTo16Bit((double)m_top->x()));
             }
         }
         if(topCanMove){
@@ -91,8 +91,8 @@ bool Transparent::event(QEvent *event)
                 m_top->setX(relativeAbscissaRange[1]);
             }else{
                 m_top->setX(mouse->pos().x());
-                emit sendMappingRange(relativeCoordinateValueMapTo16Bit((double)m_bottom->x()),
-                                      relativeCoordinateValueMapTo16Bit((double)m_top->x()));
+				emit sendMapRange((int)relativeCoordinateValueMapTo16Bit((double)m_bottom->x()),
+									(int)relativeCoordinateValueMapTo16Bit((double)m_top->x()));
             }
         }
         update();
