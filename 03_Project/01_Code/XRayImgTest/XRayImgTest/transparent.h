@@ -7,6 +7,7 @@
 #include <QEvent>
 #include <QDebug>
 #include <QMessageBox>
+#include <QLabel>
 
 class Transparent : public QWidget
 {
@@ -25,6 +26,10 @@ private:
     // Relative coordinates 相对窗体表格的坐标范围
     int relativeAbscissaRange[2];
     int relativeOrdinateRange[2];
+
+	//两个标签用来显示数值
+	QLabel* bottomLabel;
+	QLabel* topLabel;
 
     // 两个端点
     QPoint* m_bottom;

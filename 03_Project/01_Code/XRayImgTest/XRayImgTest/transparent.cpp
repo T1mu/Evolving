@@ -14,6 +14,9 @@ Transparent::Transparent(QWidget *parent) : QWidget(parent)
     m_bottom = new QPoint(relativeAbscissaRange[0],relativeOrdinateRange[1]);
     m_top = new QPoint(relativeAbscissaRange[1],relativeOrdinateRange[0]);
 
+	bottomLabel = new QLabel(this);
+	topLabel = new QLabel(this);
+
 }
 
 void Transparent::paintEvent(QPaintEvent *event)
@@ -82,6 +85,8 @@ bool Transparent::event(QEvent *event)
                 m_bottom->setX(mouse->pos().x());
                 emit sendMapRange((int)relativeCoordinateValueMapTo16Bit((double)m_bottom->x()),
                                       (int)relativeCoordinateValueMapTo16Bit((double)m_top->x()));
+// 				bottomLabel->setText(QString("%1").arg((int)relativeCoordinateValueMapTo16Bit((double)m_bottom->x())));
+// 				bottomLabel->setGeometry(m_bottom->x(), relativeOrdinateRange[1],20,10);
             }
         }
         if(topCanMove){

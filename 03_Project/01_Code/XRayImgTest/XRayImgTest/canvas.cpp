@@ -2,23 +2,21 @@
 #include "ui_canvas.h"
 
 canvas::canvas(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::canvas)
+QWidget(parent),
+ui(new Ui::canvas)
 {
-    ui->setupUi(this);
-    initUi(910, 930);
-	//
+	ui->setupUi(this);
+	initUi(910, 930);
 	writeData(20, 20);
-	//
 	getArray(NULL, 3072, 3072);
 
 	prepareDisplay();
-    this->setMouseTracking(true);
+	this->setMouseTracking(true);
 }
 
 canvas::~canvas()
 {
-    delete ui;
+	delete ui;
 }
 
 void canvas::initUi(int h, int w)
@@ -27,28 +25,28 @@ void canvas::initUi(int h, int w)
 	this->setMinimumSize(h, w);
 	this->setMaximumSize(h, w);
 	this->setRatio(0.1, 1.0, 3.0);                                      //设置缩放和移动比例
-    m_drawParams->canvsRect=QRect(0,0,this->width(),this->height());
+	m_drawParams->canvsRect = QRect(0, 0, this->width(), this->height());
 
-    //Ui界面底部控件位置的设置
-    ui->ShortCutTipsLab->hide();
-    ui->label->setGeometry(0,this->height()-20,this->width(),20);
-    ui->helpBtn->setGeometry(this->width()-ui->helpBtn->width(),this->height()-20,ui->helpBtn->width(),20);
-    ui->ShortCutTipsLab->setGeometry(ui->helpBtn->x()+ui->helpBtn->width()-ui->ShortCutTipsLab->width(),ui->helpBtn->y()-ui->ShortCutTipsLab->height(),
-                                     ui->ShortCutTipsLab->width(),ui->ShortCutTipsLab->height());
+	//Ui界面底部控件位置的设置
+	ui->ShortCutTipsLab->hide();
+	ui->label->setGeometry(0, this->height() - 20, this->width(), 20);
+	ui->helpBtn->setGeometry(this->width() - ui->helpBtn->width(), this->height() - 20, ui->helpBtn->width(), 20);
+	ui->ShortCutTipsLab->setGeometry(ui->helpBtn->x() + ui->helpBtn->width() - ui->ShortCutTipsLab->width(), ui->helpBtn->y() - ui->ShortCutTipsLab->height(),
+		ui->ShortCutTipsLab->width(), ui->ShortCutTipsLab->height());
 }
 
 void canvas::setRatio(double zoom_ratio = 0.1, double move_ratio = 1.0, double max_ratio = 3.0)
 {
-    if(max_ratio<0 || zoom_ratio<0 || max_ratio<0){
-        QMessageBox box;
-        box.warning(this,"WARNING","max_ratio/zoom_ratio/max_ratio Can Not Below 0!");
-    }else{
-        this->m_drawParams->zoomRatio = zoom_ratio;
-        this->m_drawParams->moveRatio = move_ratio;
-        this->m_drawParams->maxZoomRatio = max_ratio;
-    }
+	if (max_ratio < 0 || zoom_ratio < 0 || max_ratio < 0){
+		QMessageBox box;
+		box.warning(this, "WARNING", "max_ratio/zoom_ratio/max_ratio Can Not Below 0!");
+	}
+	else{
+		this->m_drawParams->zoomRatio = zoom_ratio;
+		this->m_drawParams->moveRatio = move_ratio;
+		this->m_drawParams->maxZoomRatio = max_ratio;
+	}
 }
-
 
 void canvas::getArray(const ushort* arrayData, int width, int height)
 {
@@ -57,7 +55,8 @@ void canvas::getArray(const ushort* arrayData, int width, int height)
 		memcpy(m_imgData->_array16, arrayData, sizeof(ushort)*width*height);
 		m_imgData->_width = width;
 		m_imgData->_height = height;
-		m_imgData->_mat = Array16toMat(m_imgData->_array16,m_imgData->_width,m_imgData->_height);
+		m_imgData->_mat = Array16toMat(m_imgData->_array16, m_imgData->_width, m_imgData->_height);
+		Array16to8();
 		m_imgData->_srcPix = Array8toPix();
 		m_imgData->_crtPix = QPixmap(m_imgData->_srcPix);
 	}
@@ -76,7 +75,7 @@ void canvas::prepareDisplay()
 	m_drawParams->zoomRatio = (double)this->width() / m_imgData->_srcPix.width(); //设置缩放变量
 }
 
-void canvas::createArray16(int width=3072, int height=3072)
+void canvas::createArray16(int width = 3072, int height = 3072)
 {
 	//生成渐变图像
 	int bytes = 16;
@@ -91,7 +90,7 @@ void canvas::createArray16(int width=3072, int height=3072)
 	//设置imgData的成员信息
 	m_imgData->_array16 = array;
 	m_imgData->_width = width;
-	m_imgData->_height = height;	
+	m_imgData->_height = height;
 	m_imgData->_mat = Array16toMat(m_imgData->_array16, m_imgData->_width, m_imgData->_height);
 	Array16to8();
 	m_imgData->_srcPix = Array8toPix();
@@ -124,7 +123,7 @@ void canvas::calcMapTable(int bottom, int top, const int srcBytes, const int dst
 	}
 }
 
-void canvas::Array16to8(int bottom , int top )
+void canvas::Array16to8(int bottom, int top)
 {
 	//更新mapTabale映射表
 	if (m_imgData->_mapTable != nullptr)
@@ -141,17 +140,25 @@ void canvas::Array16to8(int bottom , int top )
 }
 
 
+void canvas::writeData(int width, int height)
+{
+	createArray16(width, height);
+	writeArray(m_imgData->_array16);
+	writeArray(m_imgData->_array8);
+	writeMat(m_imgData->_mat);
+}
+
 QPixmap canvas::Mat16toPix8(const cv::Mat &mat)
 {
 	cv::Mat tempMat;
-    mat.convertTo(tempMat, CV_8UC1,255/65535.0,0);	//将原图转换成CV_8U
-    QImage img = QImage((const unsigned char*)(tempMat.data),
-        tempMat.cols, tempMat.rows,
-        tempMat.cols*tempMat.channels(),
-        QImage::Format_Grayscale8);
-    QPixmap imgPix = QPixmap::fromImage(img);
+	mat.convertTo(tempMat, CV_8UC1, 255 / 65535.0, 0);	//将原图转换成CV_8U
+	QImage img = QImage((const unsigned char*)(tempMat.data),
+		tempMat.cols, tempMat.rows,
+		tempMat.cols*tempMat.channels(),
+		QImage::Format_Grayscale8);
+	QPixmap imgPix = QPixmap::fromImage(img);
 
-    return imgPix;
+	return imgPix;
 }
 
 cv::Mat canvas::Array16toMat(ushort* array, int w, int h)
@@ -189,10 +196,10 @@ QPixmap canvas::Array8toPix()
 
 void canvas::on_helpBtn_clicked(bool checked)
 {
-    if(checked)
-        ui->ShortCutTipsLab->show();
-    else
-        ui->ShortCutTipsLab->hide();
+	if (checked)
+		ui->ShortCutTipsLab->show();
+	else
+		ui->ShortCutTipsLab->hide();
 }
 
 void canvas::getMapRange(const int bottom, const int top)
@@ -351,14 +358,14 @@ bool canvas::event(QEvent *event)
 		QKeyEvent *keyBoard = dynamic_cast<QKeyEvent*>(event);
 		if (keyBoard->key() == Qt::Key_Control){
 			ctrlIsPressed = true;
-			QApplication::setOverrideCursor(Qt::OpenHandCursor); //设置鼠标样式
+			setCursor(Qt::OpenHandCursor); //设置鼠标样式
 		}
 	}
 	else if (event->type() == QEvent::KeyRelease){
 		QKeyEvent *keyBoard = dynamic_cast<QKeyEvent*>(event);
 		if (keyBoard->key() == Qt::Key_Control){
 			ctrlIsPressed = false;
-			QApplication::setOverrideCursor(Qt::CrossCursor);   //改回鼠标样式
+			setCursor(Qt::CrossCursor);   //改回鼠标样式
 		}
 	}
 	//#事件 键盘 ctrl+0按下 设置初始缩放比例为1.0 即原图大小
@@ -387,6 +394,7 @@ bool canvas::event(QEvent *event)
 			if (ctrlIsPressed){
 				ctrlLefbtnPressed = true;                 //ctrl+鼠标左键同时按下 设置标志位
 				PreDot = mouse->pos();                  //记录左键按下的坐标
+				setCursor(Qt::OpenHandCursor);
 			}
 		}
 	}
@@ -396,14 +404,19 @@ bool canvas::event(QEvent *event)
 		if (mouse->button() == Qt::LeftButton && ctrlLefbtnPressed)
 		{
 			ctrlLefbtnPressed = false;
+			setCursor(Qt::CrossCursor);
 		}
 
 	}
 	if (event->type() == QEvent::MouseMove)              //移动图片
 	{
 		QMouseEvent *mouse = dynamic_cast<QMouseEvent*>(event);
-		if (m_drawParams->canvsRect.contains(mouse->pos())){
+		if (this->rect().contains(mouse->pos())){
+			
 			this->setCursor(Qt::CrossCursor);
+			if (ctrlIsPressed){
+				this->setCursor(Qt::OpenHandCursor);
+			}
 		}
 		else{
 			this->setCursor(Qt::ArrowCursor);
@@ -421,7 +434,7 @@ bool canvas::event(QEvent *event)
 		if (m_drawParams->zoomRatio > 0){
 			m_status.pos_x = m_imgStartX / m_drawParams->zoomRatio + mouse->pos().x() / m_drawParams->zoomRatio;  //计算缩放后的坐标
 			m_status.pos_y = m_imgStartY / m_drawParams->zoomRatio + mouse->pos().y() / m_drawParams->zoomRatio;  //计算缩放后的坐标
-				m_status.value = 65535.0*m_imgData->_array8[(int)m_status.pos_y*(int)m_status.width +(int) m_status.pos_x] / 255.0;
+			m_status.value = 65535.0*m_imgData->_array8[(int)m_status.pos_y*(int)m_status.width + (int)m_status.pos_x] / 255.0;
 		}
 		update();
 	}

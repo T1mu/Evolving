@@ -29,8 +29,8 @@ void dragChartSigleton::initChart()
     axisY->setLabelFormat("%.0f");
     axisX->setRange(0,65535);
     axisY->setRange(0,255);
-    axisX->setTickCount(6);
-    axisX->setMinorTickCount(3);
+    axisX->setTickCount(8);
+    axisX->setMinorTickCount(5);
     axisY->setMinorTickCount(1);
     chart->setAxisX(axisX);
     chart->setAxisY(axisY);
