@@ -80,7 +80,7 @@ public:
 private:
 
 	//#数据 状态栏struct
-	struct bottomStatus{
+	struct BottomStatus{
 		double width;
 		double height;
 		int depth;
@@ -91,7 +91,7 @@ private:
 	};
 
 	//#数据 图像struct
-	struct imageData{
+	struct ImgData{
 		cv::Mat _mat;
 		QPixmap _srcPix;
 		QPixmap _crtPix;
@@ -109,7 +109,7 @@ private:
 	int m_imgStartY;            //图像起始点的y
 
 	//#数据 绘制参数结构
-	struct drawParams{
+	struct DrawParams{
 		QRect canvsRect;			//画板大小
 		double zoomRatio;			//缩放大小
 		double zoomStepRatio = 0.1;	//缩放改变率
@@ -122,9 +122,9 @@ private:
 	int m_action;                       //动作(放大,缩小,移动...)
 
 
-	imageData *m_imgData = new imageData();
-	bottomStatus m_status;
-	drawParams *m_drawParams = new drawParams();
+	ImgData *m_imgData = new ImgData();
+	BottomStatus m_status;
+	DrawParams *m_drawParams = new DrawParams();
 
 	//标志位
 	bool m_readyDisplay = false;

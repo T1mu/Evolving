@@ -7,7 +7,7 @@ ui(new Ui::canvas)
 {
 	ui->setupUi(this);
 	initUi(910, 930);
-	writeData(20, 20);
+	writeData(30, 30);
 	getArray(NULL, 3072, 3072);
 
 	prepareDisplay();
@@ -137,7 +137,6 @@ void canvas::Array16to8(int bottom, int top)
 		m_imgData->_array8[i] = m_imgData->_mapTable[(int)m_imgData->_array16[i]];	//m_imgData->array8 赋值成功
 	}
 }
-
 
 void canvas::writeData(int width, int height)
 {
