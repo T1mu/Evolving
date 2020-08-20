@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>calibration_test1Class</class>
+ <widget class="QWidget" name="calibration_test1Class">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1127</width>
+    <height>927</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>calibration_test1</string>
+  </property>
+  <widget class="QPushButton" name="btn_threshold">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>920</x>
+     <y>610</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确定所选范围</string>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>240</y>
+     <width>221</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>校准参数</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>u</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="ulabel">
+        <property name="text">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>v</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="vlabel">
+        <property name="text">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>RFI</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="RFIlabel">
+        <property name="text">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>RFD</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="RFDlabel">
+        <property name="text">
+         <string>0.0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>845</width>
+     <height>845</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="calibration_test1.qrc"/>
+ </resources>
+ <connections/>
+</ui>
