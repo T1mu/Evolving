@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MenuWidget</class>
+ <widget class="QWidget" name="MenuWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>669</width>
+    <height>22</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>22</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MenuWidget</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+    </layout>
+   </item>
+  </layout>
+  <action name="newExpAction">
+   <property name="text">
+    <string>新建实验</string>
+   </property>
+   <property name="toolTip">
+    <string>新建实验</string>
+   </property>
+  </action>
+  <action name="openExpAction">
+   <property name="text">
+    <string>打开实验</string>
+   </property>
+   <property name="toolTip">
+    <string>打开实验</string>
+   </property>
+  </action>
+  <action name="saveExpAction">
+   <property name="text">
+    <string>保存实验</string>
+   </property>
+   <property name="toolTip">
+    <string>保存实验</string>
+   </property>
+  </action>
+  <action name="closeAction">
+   <property name="text">
+    <string>退出</string>
+   </property>
+   <property name="toolTip">
+    <string>关闭软件</string>
+   </property>
+  </action>
+  <action name="helpFCSAction">
+   <property name="text">
+    <string>关于FCS</string>
+   </property>
+   <property name="toolTip">
+    <string>关于FCS</string>
+   </property>
+  </action>
+  <action name="openHelpFileAction">
+   <property name="text">
+    <string>帮助文档</string>
+   </property>
+   <property name="toolTip">
+    <string>帮助文档</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../MainModule.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MeasureWidget</class>
+ <widget class="QWidget" name="MeasureWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>360</width>
+    <height>897</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MeasureWidget</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>300</width>
+     <height>864</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>300</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>300</width>
+     <height>864</height>
+    </size>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="openBtn">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>open</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="selectCb">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <item>
+         <property name="text">
+          <string>Null</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Line Angle</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Perden</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Perpen</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Pix</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="enableBtn">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QPushButton" name="cancelBtn">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="clearBtn">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>clear</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="perdenBtn_4">
+        <property name="minimumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>85</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>45</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>712</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

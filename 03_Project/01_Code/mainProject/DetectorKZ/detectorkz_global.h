@@ -1,0 +1,12 @@
+#ifndef DETECTORKZ_GLOBAL_H
+#define DETECTORKZ_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#ifdef DETECTORKZ_LIB
+# define DETECTORKZ_EXPORT Q_DECL_EXPORT
+#else
+# define DETECTORKZ_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // DETECTORKZ_GLOBAL_H

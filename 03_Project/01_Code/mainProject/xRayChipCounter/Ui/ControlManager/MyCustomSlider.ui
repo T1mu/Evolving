@@ -1,0 +1,23 @@
+<UI version="4.0" >
+ <class>MyCustomSlider</class>
+ <widget class="QSlider" name="MyCustomSlider" >
+  <property name="objectName" >
+   <string notr="true">MyCustomSlider</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+	<x>0</x>
+	<y>0</y>
+	<width>400</width>
+	<height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MyCustomSlider</string>
+  </property>  
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections/>
+</UI>

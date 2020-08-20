@@ -1,0 +1,1104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Calibration" Collapsed="true">
+    <Position X="26" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAABAAAAAQEABAABAAAAIAAAgAAACACAAUAACAA=</HashCode>
+      <FileName>calibration\calibration.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_GrayCurveChart" Collapsed="true">
+    <Position X="18.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAAAAAHDAAAAABBACBAAAAAAAAQAIAAAACAAAEAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_GrayCurveChart.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainWidget" Collapsed="true">
+    <Position X="31.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQEAAAAABAEAAAAACAAAACAAAAAAAAIAAAAAAAIAY=</HashCode>
+      <FileName>MainWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RectWidget" Collapsed="true">
+    <Position X="29.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABABBAADAEAwARAAEIQAABAAYERISAAEAAAAAQAA=</HashCode>
+      <FileName>Ui\ImageTool\RectWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RectPointWidget" Collapsed="true">
+    <Position X="27.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAABAEAwABQAAIAEAJAAQAAAQAAAAgAAAAAA=</HashCode>
+      <FileName>Ui\ImageTool\RectPointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LinePointWidget" Collapsed="true">
+    <Position X="27.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAABACDAEAQARIAAIQAABAAYAQAAAAAAAAAAAEA=</HashCode>
+      <FileName>Ui\ImageTool\LinePointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Line" Collapsed="true">
+    <Position X="26" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AYBCIAAABBIAQAIgACAAEAAIBWAiAAIggQAAAIiAiAA=</HashCode>
+      <FileName>Ui\ImageTool\Line.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircleWidget" Collapsed="true">
+    <Position X="31.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADAAAAABAEQQARAAAIBEABAAQAAISAAAAABAgAAA=</HashCode>
+      <FileName>Ui\ImageTool\CircleWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProcessWidget" Collapsed="true">
+    <Position X="33" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgBACAAAEAABkBIABdwAAACABgIAAAEABAAAAFACEIA=</HashCode>
+      <FileName>Ui\ImageTool\ProcessWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemWidget" Collapsed="true">
+    <Position X="20.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAUEAAhMgAAAAABAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\ImageTool\ItemWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlWidget" Collapsed="true">
+    <Position X="26" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\ControlManager\ControlWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RightWidget" Collapsed="true">
+    <Position X="31.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAIAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>RightWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoveWidget" Collapsed="true">
+    <Position X="27.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAACAAEAAABEAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Ui\ControlManager\MoveWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyCustomSlider" Collapsed="true">
+    <Position X="31.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABEEAAAAAAAAABAACAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\ControlManager\MyCustomSlider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StateWidget" Collapsed="true">
+    <Position X="26" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAEAEAAAAAAAAAAAAAAQAIAgAAAACgAAA=</HashCode>
+      <FileName>Ui\ControlManager\StateWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlScanWidget" Collapsed="true">
+    <Position X="24.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\ControlManager\ControlScanWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMenuWidget" Collapsed="true">
+    <Position X="22.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAgAAAgAAAAAAAAAAAgAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Ui\ControlManager\ControlMenuWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainWidgetDisplay" Collapsed="true">
+    <Position X="33" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAEAAAAAABAAAABAABAkIBBgAAAgAAAIA=</HashCode>
+      <FileName>MainWidgetDisplay.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IconHelper" Collapsed="true">
+    <Position X="29.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEAABAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQA=</HashCode>
+      <FileName>Library\IconHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuWidget" Collapsed="true">
+    <Position X="24.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAIABiEAAwRCEIAQAAFAAAAAAgAAIAAAAAAoA=</HashCode>
+      <FileName>Library\MenuWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyHelper" Collapsed="true">
+    <Position X="33" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAgQAAQEAAEAEAAAAAAAAAAAAAAAEAAAAAAIAAAA=</HashCode>
+      <FileName>Library\MyHelper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBarWidget" Collapsed="true">
+    <Position X="27.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAACAABAEAAABgAQAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Library\ToolBarWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="frmMessageBox" Collapsed="true">
+    <Position X="22.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAEAAAAAAAQAJAAAAQAAAAAAAIACAAAAA=</HashCode>
+      <FileName>Library\frmmessagebox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QGraphicsPixmapItem">
+    <Position X="18.5" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="QGraphicsPixmapItem::ShapeMode" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>d:\10_qt5.8.0\5.8\msvc2013_64\include\qtwidgets\qgraphicsitem.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="QGraphicsPixmapItem::__unnamed_enum_040e_7" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>d:\10_qt5.8.0\5.8\msvc2013_64\include\qtwidgets\qgraphicsitem.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAACIAAAAAAAABAAAAAsAAAAAgCAAAgAAAAA=</HashCode>
+      <FileName>d:\10_qt5.8.0\5.8\msvc2013_64\include\qtwidgets\qgraphicsitem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Global" Collapsed="true">
+    <Position X="26" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Library\Global.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageCorrect" Collapsed="true">
+    <Position X="31.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAQAhEQACCBAEHiMBoIwAQQESJARAQCkARMBCoAQEAg=</HashCode>
+      <FileName>Ui\ImageCorrect\ImageCorrect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeasureWidget" Collapsed="true">
+    <Position X="22.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBFAAAAAQAAAACAAKBAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Ui\MeasureManager\MeasureWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImgPixChart" Collapsed="true">
+    <Position X="33" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAABIAAAAAAAAAAAQgAAAAAAAA=</HashCode>
+      <FileName>Ui\MeasureManager\ImgPixChart.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LAClass" Collapsed="true">
+    <Position X="22.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAEAgAACAABAAAACAAAAAREIBgAAJAAAAgAAAABA=</HashCode>
+      <FileName>Ui\MeasureManager\LAClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LAPointWidget" Collapsed="true">
+    <Position X="24.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAABAEAAgBAAABABYAEAZMAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\MeasureManager\LAPointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PerpenWireClass" Collapsed="true">
+    <Position X="24.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCAAAABgAACAABAAAACAAAAABEABEQABAgAAgBAAABA=</HashCode>
+      <FileName>Ui\MeasureManager\PerpenWireClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PixChartWidget" Collapsed="true">
+    <Position X="26" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAABAAAAAAAAAAIAAAAAACAAAA=</HashCode>
+      <FileName>Ui\MeasureManager\PixChartWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PixClass" Collapsed="true">
+    <Position X="27.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQCACAAAAAAAAAAIAAAAAAEAAAAAAQAAAAAAAAABA=</HashCode>
+      <FileName>Ui\MeasureManager\PixClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PPClass" Collapsed="true">
+    <Position X="31.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCgAAAHhAAiJALAACICAAAAABEQBBAQBAgAAoBIAABA=</HashCode>
+      <FileName>Ui\MeasureManager\PPClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeasurePointWidget" Collapsed="true">
+    <Position X="20.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAABAAAAABAEAAgBAAABABYAEAZEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\MeasureManager\MeasurePointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointWidget" Collapsed="true">
+    <Position X="29.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBAABgCBAEAgABAAAIAgEBAAYAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\CurveManager\PointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DisplayWidget" Collapsed="true">
+    <Position X="33" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAgBAEAAALABAAAAAQQAALAAQAAAAAAAAgAA=</HashCode>
+      <FileName>Ui\ScanPixManager\DisplayWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScanPixWidget" Collapsed="true">
+    <Position X="22.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAABAABAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Ui\ScanPixManager\ScanPixWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonDevice" Collapsed="true">
+    <Position X="33" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEARAgFAAKBEEAAAAgAAMIAAgAQACgAEghAAAQABAEA=</HashCode>
+      <FileName>Ui\CommonDeviceManager\CommonDevice.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommonTools" Collapsed="true">
+    <Position X="20.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\CommonToolsManager\CommonTools.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileManagement" Collapsed="true">
+    <Position X="20.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgEEAAAAAEAAAAAAAIAAABAAAEAgAAAAAAAAIAIA=</HashCode>
+      <FileName>Ui\FileManager\FileManagement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QUIWidget" Collapsed="true">
+    <Position X="26" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hJBMnAmWQ3QCFFFhRADdwYA6ICEhQACEKGrCL1JgBCU=</HashCode>
+      <FileName>UIframe\quiwidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QUIMessageBox" Collapsed="true">
+    <Position X="24.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hEAAAAKEQIAgAAEQAhAAAIAiAIAABAAUYAAAAUIAACI=</HashCode>
+      <FileName>UIframe\quiwidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QUIInputBox" Collapsed="true">
+    <Position X="22.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAAAIIAEAIAgACEQABAAAIECAIAABCAEaAACAUIAACI=</HashCode>
+      <FileName>UIframe\quiwidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QUIConfig" Collapsed="true">
+    <Position X="20.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAgAAABAAEAAAIAAIgAgICADAAgAAgAAgSCAAAAEI=</HashCode>
+      <FileName>UIframe\quiwidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppInit" Collapsed="true">
+    <Position X="24.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAAQAAAAAIAAAA=</HashCode>
+      <FileName>UIframe\appinit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="showImage" Collapsed="true">
+    <Position X="24.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>jBdAmgeQFQBgc6YWv/zULoBSJBoQMCbCgTBJKJaACIg=</HashCode>
+      <FileName>Ui\ViewManager\showimage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParaMemter" Collapsed="true">
+    <Position X="22.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAEAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\ParaManager\ParaMemter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="dealimage" Collapsed="true">
+    <Position X="29.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAEAQAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\dealimage\dealimage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sadf" Collapsed="true">
+    <Position X="20.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Ui\AdjustManager\sadf.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RWidget" Collapsed="true">
+    <Position X="33" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAABAEAQgRAAAAAAABAAQAAAAAAAQAEAAAAA=</HashCode>
+      <FileName>Ui\AdjustManager\RWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWidget" Collapsed="true">
+    <Position X="29.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAABAkAQgBAAAAAAABAAQAAAAAAAQAEAAAAA=</HashCode>
+      <FileName>Ui\AdjustManager\MWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LWidget" Collapsed="true">
+    <Position X="29.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAABAEAQgBAAAAAAABAAQAAAAAAAQAEAAAAA=</HashCode>
+      <FileName>Ui\AdjustManager\LWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdjustWidget" Collapsed="true">
+    <Position X="22.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAEAAAAAAAAAAABAAAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Ui\AdjustManager\AdjustWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdjustChart" Collapsed="true">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECAAAAAQAQACAAAAFQAAEIAABAAIAAAACQgAAgYCgIg=</HashCode>
+      <FileName>Ui\AdjustManager\AdjustChart.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChartWidget" Collapsed="true">
+    <Position X="29.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAEABAAgAAAAAADAAAAAAIAAAAAACAAAA=</HashCode>
+      <FileName>Ui\CurveManager\ChartWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChartView" Collapsed="true">
+    <Position X="27.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECIAAAAQgQHAEAiAAAAAABBABIQYAACAAYgAAEAAAAo=</HashCode>
+      <FileName>Ui\CurveManager\ChartView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GrayCurveChart" Collapsed="true">
+    <Position X="27.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAIgAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GrayCurveChart.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="newImageView" Collapsed="true">
+    <Position X="20.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\ViewManager\newImageView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GainAdjustBar" Collapsed="true">
+    <Position X="24.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAAAAAAAAAEAAQACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ui\DetectorKZManager\GainAdjustBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DarkAdjustBar" Collapsed="true">
+    <Position X="27.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAAAAAAAAAAEAAACAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Ui\DetectorKZManager\DarkAdjustBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DetectorKZWidget" Collapsed="true">
+    <Position X="31.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARBAEYABBCEAAQChAACAAJAAAAAAAJAiAIAAIAACA=</HashCode>
+      <FileName>Ui\DetectorKZManager\DetectorKZWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MotorWidget" Collapsed="true">
+    <Position X="26" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAgAAgAECIBAEAAAAAQAMAAAAAAAAAAkiAIBAACCAAA=</HashCode>
+      <FileName>Ui\MotorManager\MotorWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TubeWidget" Collapsed="true">
+    <Position X="29.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAEgBAAgBAEAAMAQAQEAhAgAQAAAIgAgYAAQAAAAA=</HashCode>
+      <FileName>Ui\TubeManager\TubeWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_CommonDevice" Collapsed="true">
+    <Position X="18.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>7wQoAABnAAAAgBFQmIAAAAFBQIQAYOAAACAABHAQ9jA=</HashCode>
+      <FileName>GeneratedFiles\ui_CommonDevice.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_CommonTools" Collapsed="true">
+    <Position X="9.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAADAAAAABBAABAAAAAAAAQAIAAAACAAAEAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_CommonTools.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_DisplayWidget" Collapsed="true">
+    <Position X="18.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_DisplayWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_FileManagement" Collapsed="true">
+    <Position X="6.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAIAAAIAAAABAAAAABAAAAAQAIAAAABAAAEDABAA=</HashCode>
+      <FileName>GeneratedFiles\ui_FileManagement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ImageCorrect" Collapsed="true">
+    <Position X="3.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAABAAAAABAQCAAAAAAABgSAICAAACAAIAAAADA=</HashCode>
+      <FileName>GeneratedFiles\ui_ImageCorrect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_LAPointWidget" Collapsed="true">
+    <Position X="0.5" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_LAPointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MeasurePointWidget" Collapsed="true">
+    <Position X="15.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MeasurePointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MeasureWidget" Collapsed="true">
+    <Position X="12.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAKAAADEAKAAAABAAAAQCIAAAAAAAAEAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MeasureWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_PixChartWidget" Collapsed="true">
+    <Position X="15.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAQAIAAAAIAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_PixChartWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_PointWidget" Collapsed="true">
+    <Position X="9.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_PointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ScanPixWidget" Collapsed="true">
+    <Position X="15.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wQEAAIAAABAAABBACAAAAAAAAAQAIABAACAEAEEAJAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ScanPixWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_AdjustWidget" Collapsed="true">
+    <Position X="6.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAQAIAAAAIAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_AdjustWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ChartWidget" Collapsed="true">
+    <Position X="15.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAQAIAAAAIAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ChartWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_DarkAdjustBar" Collapsed="true">
+    <Position X="3.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAABAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_DarkAdjustBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_dealimage" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAUAAAAAAAAgFAAAAAIAAAAAAQAoEAAACAAACAAABA=</HashCode>
+      <FileName>GeneratedFiles\ui_dealimage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_DetectorKZWidget" Collapsed="true">
+    <Position X="0.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>zwQgAAAFAAAAgBMQCAAggAEAQKQAYGACAAAQBFAAzjA=</HashCode>
+      <FileName>GeneratedFiles\ui_DetectorKZWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_GainAdjustBar" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAABAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_GainAdjustBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_LWidget" Collapsed="true">
+    <Position X="12.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_LWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MotorWidget" Collapsed="true">
+    <Position X="9.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DEEICMABgHkCAAEQmAASgAJhQASCYOBAcQBQIHRIvzg=</HashCode>
+      <FileName>GeneratedFiles\ui_MotorWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MWidget" Collapsed="true">
+    <Position X="12.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_newImageView" Collapsed="true">
+    <Position X="6.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAABAAAAAAAAEAAAQAIAAAAAAAAEAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_newImageView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ParaMemter" Collapsed="true">
+    <Position X="12.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>igAEAAAAAAAAABAAAAAIAAAAAAQAIAAAAAAAAAAAABA=</HashCode>
+      <FileName>GeneratedFiles\ui_ParaMemter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_RWidget" Collapsed="true">
+    <Position X="3.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_sadf" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_sadf.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_TubeWidget" Collapsed="true">
+    <Position X="0.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DwUAAAghCAAAABBACAAgAAQASAQAICAAAAAAAAAgBDA=</HashCode>
+      <FileName>GeneratedFiles\ui_TubeWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_CircleWidget" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_CircleWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ControlMenuWidget" Collapsed="true">
+    <Position X="9.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAABACEAIAAAKAABAAAQAAQAIAIAAAAAQQAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ControlMenuWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ControlScanWidget" Collapsed="true">
+    <Position X="6.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIBBACAAAAAAAQAQAIAAAACAAAEAABAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ControlScanWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ControlWidget" Collapsed="true">
+    <Position X="9.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAQAIAAAAAAAAEAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ControlWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_frmMessageBox" Collapsed="true">
+    <Position X="12.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAEAIIFAAQAAAEACAAAAAAAIISAJAAAACAIAEAABAA=</HashCode>
+      <FileName>GeneratedFiles\ui_frmmessagebox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ItemWidget" Collapsed="true">
+    <Position X="3.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ItemWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_LinePointWidget" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_LinePointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MainWidgetClass" Collapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAKAUIIAAAAAACAAQAIACICQBIBAEAgAAAEBABGI=</HashCode>
+      <FileName>GeneratedFiles\ui_MainWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MainWidgetDisplay" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIADQAAIAABAAAAYAAAAQAwQIQAAAhAQAEAABAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MainWidgetDisplay.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MenuWidget" Collapsed="true">
+    <Position X="6.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAABIAAAAQAIEAEAAAAAEAABAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MenuWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MoveWidget" Collapsed="true">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MoveWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_MyCustomSlider" Collapsed="true">
+    <Position X="6.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MyCustomSlider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ProcessWidget" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>yAAIACRAQAAAABEACEMAAAAAAAYAYAAAACQAQFAJBiA=</HashCode>
+      <FileName>GeneratedFiles\ui_ProcessWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_RectPointWidget" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RectPointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_RectWidget" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RectWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_RightWidget" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>4AAAAADDAAAAABBAABAAAAAAAAQAIAAAACAAAEAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RightWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_StateWidget" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>jwAAAAAAAAAAAAAACAAAAAEAQAQAIAAQQCAAAUIABCA=</HashCode>
+      <FileName>GeneratedFiles\ui_StateWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_ToolBarWidget" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAKABBAAAAAAACAAAAEAAAAQAIABAADAAAAAAJAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ToolBarWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::GrayCurveChart" Collapsed="true">
+    <Position X="18.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_GrayCurveChart.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::frmMessageBox" Collapsed="true">
+    <Position X="12.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_frmmessagebox.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::CommonDevice" Collapsed="true">
+    <Position X="18.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_CommonDevice.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::CommonTools" Collapsed="true">
+    <Position X="9.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_CommonTools.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::DisplayWidget" Collapsed="true">
+    <Position X="18.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_DisplayWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::FileManagement" Collapsed="true">
+    <Position X="6.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_FileManagement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ImageCorrect" Collapsed="true">
+    <Position X="3.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ImageCorrect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::LAPointWidget" Collapsed="true">
+    <Position X="0.5" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_LAPointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MeasurePointWidget" Collapsed="true">
+    <Position X="15.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MeasurePointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MeasureWidget" Collapsed="true">
+    <Position X="12.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MeasureWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::PixChartWidget" Collapsed="true">
+    <Position X="15.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_PixChartWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::PointWidget" Collapsed="true">
+    <Position X="9.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_PointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ScanPixWidget" Collapsed="true">
+    <Position X="15.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ScanPixWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::AdjustWidget" Collapsed="true">
+    <Position X="6.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_AdjustWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ChartWidget" Collapsed="true">
+    <Position X="15.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ChartWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::DarkAdjustBar" Collapsed="true">
+    <Position X="3.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_DarkAdjustBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::dealimage" Collapsed="true">
+    <Position X="15.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_dealimage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::DetectorKZWidget" Collapsed="true">
+    <Position X="0.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_DetectorKZWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::GainAdjustBar" Collapsed="true">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_GainAdjustBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::LWidget" Collapsed="true">
+    <Position X="12.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_LWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MotorWidget" Collapsed="true">
+    <Position X="9.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MotorWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MWidget" Collapsed="true">
+    <Position X="12.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::newImageView" Collapsed="true">
+    <Position X="6.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_newImageView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ParaMemter" Collapsed="true">
+    <Position X="12.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ParaMemter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::RWidget" Collapsed="true">
+    <Position X="3.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::sadf" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_sadf.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::TubeWidget" Collapsed="true">
+    <Position X="0.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_TubeWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::CircleWidget" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_CircleWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ControlMenuWidget" Collapsed="true">
+    <Position X="9.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ControlMenuWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ControlScanWidget" Collapsed="true">
+    <Position X="6.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ControlScanWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ControlWidget" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ControlWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ItemWidget" Collapsed="true">
+    <Position X="3.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ItemWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::LinePointWidget" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_LinePointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MainWidgetClass" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MainWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MainWidgetDisplay" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MainWidgetDisplay.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MenuWidget" Collapsed="true">
+    <Position X="6.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MenuWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MoveWidget" Collapsed="true">
+    <Position X="3.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MoveWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::MyCustomSlider" Collapsed="true">
+    <Position X="6.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_MyCustomSlider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ProcessWidget" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ProcessWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::RectPointWidget" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RectPointWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::RectWidget" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RectWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::RightWidget" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_RightWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::StateWidget" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_StateWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::ToolBarWidget" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_ToolBarWidget.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="qt_meta_stringdata_GrayCurveChart_t" Collapsed="true">
+    <Position X="29.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_GrayCurveChart.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Para" Collapsed="true">
+    <Position X="22.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Ui\ViewManager\showimage.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="`anonymous-namespace'::initializer" Collapsed="true">
+    <Position X="20.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAEA=</HashCode>
+      <FileName>GeneratedFiles\qrc_main.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="__unnamed_enum_0071_1" Collapsed="true">
+    <Position X="20.75" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAiAAAAAAAAAACAAAAAAAAAAEA=</HashCode>
+      <FileName>Library\Global.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
