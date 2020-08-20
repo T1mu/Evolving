@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -42,21 +43,26 @@ public:
     QLabel *label_7;
     QLabel *RFDlabel;
     QLabel *label;
+    QSlider *threshSlider;
+    QLabel *label_3;
+    QLabel *label_4;
+    QLabel *label_8;
+    QLabel *threshValue;
 
     void setupUi(QWidget *calibration_test1Class)
     {
         if (calibration_test1Class->objectName().isEmpty())
             calibration_test1Class->setObjectName(QStringLiteral("calibration_test1Class"));
-        calibration_test1Class->resize(1127, 927);
+        calibration_test1Class->resize(1123, 892);
         btn_threshold = new QPushButton(calibration_test1Class);
         btn_threshold->setObjectName(QStringLiteral("btn_threshold"));
         btn_threshold->setEnabled(true);
-        btn_threshold->setGeometry(QRect(920, 610, 91, 23));
+        btn_threshold->setGeometry(QRect(900, 440, 91, 23));
         btn_threshold->setCheckable(false);
         btn_threshold->setChecked(false);
         groupBox = new QGroupBox(calibration_test1Class);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(850, 240, 221, 321));
+        groupBox->setGeometry(QRect(850, 240, 201, 191));
         verticalLayout = new QVBoxLayout(groupBox);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -128,6 +134,23 @@ public:
         label = new QLabel(calibration_test1Class);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(0, 0, 845, 845));
+        threshSlider = new QSlider(calibration_test1Class);
+        threshSlider->setObjectName(QStringLiteral("threshSlider"));
+        threshSlider->setGeometry(QRect(860, 130, 231, 22));
+        threshSlider->setMaximum(65535);
+        threshSlider->setOrientation(Qt::Horizontal);
+        label_3 = new QLabel(calibration_test1Class);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(870, 100, 71, 16));
+        label_4 = new QLabel(calibration_test1Class);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(870, 160, 71, 16));
+        label_8 = new QLabel(calibration_test1Class);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setGeometry(QRect(1070, 160, 31, 16));
+        threshValue = new QLabel(calibration_test1Class);
+        threshValue->setObjectName(QStringLiteral("threshValue"));
+        threshValue->setGeometry(QRect(940, 100, 54, 12));
 
         retranslateUi(calibration_test1Class);
 
@@ -148,6 +171,10 @@ public:
         label_7->setText(QApplication::translate("calibration_test1Class", "RFD", Q_NULLPTR));
         RFDlabel->setText(QApplication::translate("calibration_test1Class", "0.0", Q_NULLPTR));
         label->setText(QString());
+        label_3->setText(QApplication::translate("calibration_test1Class", "\350\260\203\346\225\264\351\230\210\345\200\274", Q_NULLPTR));
+        label_4->setText(QApplication::translate("calibration_test1Class", "0", Q_NULLPTR));
+        label_8->setText(QApplication::translate("calibration_test1Class", "65535", Q_NULLPTR));
+        threshValue->setText(QString());
     } // retranslateUi
 
 };

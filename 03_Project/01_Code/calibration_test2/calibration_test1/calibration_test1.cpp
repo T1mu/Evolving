@@ -13,6 +13,7 @@ calibration_test1::calibration_test1(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	initConnect();
 	t_mc.resize(20);
 	for (int i = 0; i < 20; i++)//¿ª±ÙÒ»¸ö¶şÎ¬Êı×éÀ´´æÈëËùÓĞĞ¡ÇòÖĞĞÄµã
 	{
@@ -29,8 +30,6 @@ calibration_test1::calibration_test1(QWidget *parent)
 	this->setMouseTracking(0);
 	resize(1265, 965);
 
-	connect(ui.btn_threshold, SIGNAL(clicked(bool)), this, SLOT(ProcessPicture(bool)));
-	connect(this, SIGNAL(center_signal(double *)), this, SLOT(dealcenter_signal(double *)));
 
 
 	srcImg_16bit = imread(picture_one_name, 2);//´«ÈëµÚÒ»ÕÅ16Î»µÄÔ­Í¼
@@ -51,13 +50,10 @@ calibration_test1::calibration_test1(QWidget *parent)
 	cv::resize(srcImg_16bit, scaleImage_16bit, Size(), 0.3, 0.3, 2);//Í¼Æ¬´óĞ¡°´ÕÕ±ÈÀıËõµ½0.3±¶ 16bit
 	cv::resize(srcImg_24bit, scaleImage_24bit, Size(), 0.3, 0.3, 2);//Í¼Æ¬´óĞ¡°´ÕÕ±ÈÀıËõµ½0.3±¶ 24bit
 
-
-
 	scaleImageCols_16bit = scaleImage_16bit.cols;//¼ÆËãÍ¼Æ¬µÄ³¤
 	scaleImageRows_16bit = scaleImage_16bit.rows;//¼ÆËãÍ¼Æ¬µÄ¿í
-	
+	initUi();
 
-	
 }
 
 
@@ -73,9 +69,6 @@ Mat calibration_test1::convertTo3Channels(const Mat& binImg)
 	merge(channels, three_channel);
 	return three_channel;
 }
-
-
-
 
 void calibration_test1::mousePressEvent(QMouseEvent *e)
 {													//(a)
@@ -101,6 +94,7 @@ void calibration_test1::mouseMoveEvent(QMouseEvent *e)
 
 }
 
+// #»æ»­ »æ»­ÊÂ¼şµÄÊµÏÖ
 void calibration_test1::paintEvent(QPaintEvent *event)
 {
 	
@@ -124,6 +118,21 @@ void calibration_test1::paintEvent(QPaintEvent *event)
 
 }
 
+// #²Û »¬¶¯silder¹¦ÄÜµÄÊµÏÖ
+void calibration_test1::threshSliderChanged(int value)
+{
+	g_Threshold = value;
+	ui.threshValue->setText(QString("%1").arg(g_Threshold));
+	cv::Mat dis16 = scaleImage_16bit.clone();
+	Threshold_16(dis16);
+
+	scaleImage_8bit = dis16;
+// 	cv::imshow("#²Û »¬¶¯silder¹¦ÄÜµÄÊµÏÖ", dis16);
+// 	QImage Qtemp = QImage((const uchar *)dis16.data, dis16.cols, dis16.rows, dis16.step, QImage::Format_RGB888);
+// 	ui.label->setPixmap(QPixmap::fromImage(Qtemp));
+	update();
+/*	qDebug() <<"threshSliderChanged"<< value << endl;*/
+}
 
 void calibration_test1::ProcessPicture(bool)
 {
@@ -139,9 +148,10 @@ void calibration_test1::ProcessPicture(bool)
 
 	Mat imageROI = deal_src(Rect(a, b, c - a, d - b));//ÉèÖÃÆä¸ĞĞËÈ¤ÇøÓòÎªÊó±ê¿òÑ¡·¶Î§µÄ´óĞ¡
 
-	g_Threshold = adapthreshold16_8(imageROI);//¸ù¾İÊó±ê¿òÑ¡µÄÇøÓò£¬×ÔÊÊÓ¦Ò»¸öãĞÖµ×÷Îª´¦ÀíºóĞøËùÓĞÍ¼ÏñµÄÈ«¾ÖãĞÖµ
-	Threshold_16(imageROI);//½«´«ÈëµÄ16Î»Í¼Ïñ ¹Ì¶¨ãĞÖµ¶şÖµ»¯ºó ±ä³É8Î»ÔÚ·µ»Ø
-	find_ball_one(imageROI);//µÃµ½Êó±ê¿òÑ¡³öµÄÇøÓòÄÚµÄĞ¡Çò¸öÊı£¬ÒÔ¼°ËûÃÇµÄÖĞĞÄ×ø±ê
+/*	g_Threshold = adapthreshold16_8(imageROI);		//¸ù¾İÊó±ê¿òÑ¡µÄÇøÓò£¬×ÔÊÊÓ¦Ò»¸öãĞÖµ×÷Îª´¦ÀíºóĞøËùÓĞÍ¼ÏñµÄÈ«¾ÖãĞÖµ*/
+	
+	Threshold_16(imageROI);							//½«´«ÈëµÄ16Î»Í¼Ïñ ¹Ì¶¨ãĞÖµ¶şÖµ»¯ºó ±ä³É8Î»ÔÚ·µ»Ø
+	find_ball_one(imageROI);						//µÃµ½Êó±ê¿òÑ¡³öµÄÇøÓòÄÚµÄĞ¡Çò¸öÊı£¬ÒÔ¼°ËûÃÇµÄÖĞĞÄ×ø±ê
 
 	ui.label->setGeometry(QRect(0, 0, scaleImageCols_16bit, scaleImageRows_16bit));//³ĞÔØ´°¿ÚÉÏÍ¼Æ¬µÄlabel´óĞ¡µÈÓÚÊäÈëÍ¼Æ¬µÄËõ·ÅºóµÄ´óĞ¡	
 	timer = new QTimer(this);
@@ -164,15 +174,11 @@ void calibration_test1::Time_show()
 		sprintf_s(image_name, file_name, file);
 		t_dst = imread(image_name, 2);//Ë³Ğò´«ÈëÃ¿Ò»ÕÅÔ­Ê¼Í¼Æ¬
 		compare_picture(t_dst);//±È½ÏÍ¼Æ¬ÖĞËùÓĞÂÖÀªºÍÉÏÒ»ÕÅÍ¼Æ¬ÖĞÏÔÊ¾µÄĞ¡ÇòÂÖÀªµÄ¾àÀë£¬µÃ³öÄÄ¸öÂÖÀªÓ¦¸Ã±»ÏÔÊ¾
-
-	
-
+		
 		QImage Qtemp = QImage((const unsigned char*)(t_dst.data), t_dst.cols, t_dst.rows, t_dst.step, QImage::Format_RGB888);
 		ui.label->setPixmap(QPixmap::fromImage(Qtemp));
 		ui.label->show();
 		file = file + 1;//ÎÄ¼şĞòºÅ+1
-
-
 	}
 	else if (file = 61)//Èç¹ûÎÄ¼şĞòºÅµ½ÁË61
 	{
@@ -182,12 +188,9 @@ void calibration_test1::Time_show()
 		timer->stop();//Í£Ö¹¼ÆÊ±Æ÷
 		emit center_signal(para);//½«¼ÆËã²ÎÊıÏÔÊ¾ÔÚ½çÃæÉÏ
 	}
-
 }
 
-
-
-
+//#Í¼Ïñ´¦Àí ãĞÖµ´¦ÀíºóµÄÍ¼Ïñ
 void calibration_test1::Threshold_16(Mat &image)//½«´«ÈëµÄ16Î»Í¼Ïñ ¹Ì¶¨ãĞÖµ¶şÖµ»¯ºó ±ä³É8Î»ÔÚ·µ»Ø
 {
 	Mat result = image.clone();
@@ -205,13 +208,13 @@ void calibration_test1::Threshold_16(Mat &image)//½«´«ÈëµÄ16Î»Í¼Ïñ ¹Ì¶¨ãĞÖµ¶şÖµ»
 			}
 		}
 	}
-
 	cv::convertScaleAbs(result, result);
 	image = result;
+/*	cv::imshow("Threshold_16 return",result);*/
 } 
 
 
-//¼ÆËã»Ò¶È×î´ó×îĞ¡Öµ
+//#¼ÆËã ¼ÆËã»Ò¶È×î´ó×îĞ¡Öµ
 void calibration_test1::MaxGrayValue16_8(Mat image, int &max, int &min)
 {
 	min = 65535;
@@ -229,10 +232,8 @@ void calibration_test1::MaxGrayValue16_8(Mat image, int &max, int &min)
 				max = static_cast<int>(im->at<ushort>(Point(j, i)));
 			else if ((static_cast<int>(im->at<ushort>(Point(j, i))))<min)
 				min = static_cast<int>(im->at<ushort>(Point(j, i)));
-
 		}
 	}
-
 }
 
 
@@ -308,22 +309,39 @@ void calibration_test1::dealcenter_signal(double *para)
 	ui.RFIlabel->setText(QString::number(para[2]));
 	ui.RFDlabel->setText(QString::number(para[3]));
 }
+
+// #ĞÅºÅ ĞÅºÅ³õÊ¼»¯µÄÊµÏÖ
+void calibration_test1::initConnect()
+{
+	connect(ui.threshSlider, SIGNAL(sliderMoved(int)), this, SLOT(threshSliderChanged(int)));
+	connect(ui.btn_threshold, SIGNAL(clicked(bool)), this, SLOT(ProcessPicture(bool)));
+	connect(this, SIGNAL(center_signal(double *)), this, SLOT(dealcenter_signal(double *)));
+}
+
+// #½çÃæ uiµÄ³õÊ¼»¯´úÂë
+void calibration_test1::initUi()
+{
+	int max = 0;
+	int min = 0;
+	MaxGrayValue16_8(srcImg_16bit, max, min);
+	ui.threshSlider->setMaximum(max);
+	ui.threshSlider->setMinimum(min);
+	ui.label_4->setText(QString("%1").arg(min));
+	ui.label_8->setText(QString("%2").arg(max));
+}
+
 void calibration_test1::find_ball_one(Mat&image)
 {
 	vector<vector<Point> > contours_balls;
 	vector<Vec4i> hierarchy;
 	findContours(image, contours_balls, hierarchy, CV_RETR_LIST, CHAIN_APPROX_NONE, Point(0, 0));
 	mouse_ball = contours_balls.size();//°ÑÊó±ê¿òÑ¡³öµÄĞ¡Çò¸öÊı±£´æÎªÈ«¾Ö±äÁ¿
-	
-
 	//¼ÆËãÂÖÀª¾Ø
 	vector<Moments> mu(contours_balls.size());
 	for (int i = 0; i < contours_balls.size(); i++)
 	{
 		mu[i] = moments(contours_balls[i], false);
 	}
-
-	
 	//¼ÆËãÂÖÀªµÄÖÊĞÄ
 	vector<Point2f> mc(contours_balls.size());
 
@@ -345,11 +363,9 @@ void calibration_test1::compare_picture(Mat &image)
 	int ballNum_temp = 0;
 
 	cv::resize(image, image, Size(), 0.3, 0.3, 2);//Í¼Æ¬´óĞ¡°´ÕÕ±ÈÀıËõµ½0.3±¶ 8bit
-
-
+	
 	Threshold_16(image);//½«´«ÈëµÄ16Î»Í¼Ïñ ¹Ì¶¨ãĞÖµ¶şÖµ»¯ºó ±ä³É8Î»ÔÚ·µ»Ø
 	
-
 	//²éÕÒÂÖÀª
 	findContours(image, contours_all, hierarchy, 1, CHAIN_APPROX_NONE, Point(0, 0));
 	for (int i = 0; i< contours_all.size(); i++)
@@ -360,7 +376,6 @@ void calibration_test1::compare_picture(Mat &image)
 			ballNum_temp++;
 
 		}
-
 	}
 	//¼ÆËãÂÖÀª¾Ø
 	vector<Moments> mu(ballNum_temp);
@@ -394,9 +409,7 @@ void calibration_test1::compare_picture(Mat &image)
 				
 				max_temp = distance[i]; 
 				contour_temp = i;	
-
 			}
-	
 		}
 		t_mc[j].x = mc[contour_temp].x;//µÃµ½±¾Í¼Æ¬ÖĞÏÔÊ¾³öµÄËùÓĞĞ¡ÇòµÄÖĞĞÄµã×ø±ê£¬×÷ÎªÏÂÒ»ÕÅÍ¼Æ¬µÄ²Î¿¼
 		t_mc[j].y = mc[contour_temp].y;
@@ -404,10 +417,7 @@ void calibration_test1::compare_picture(Mat &image)
 		center_y[j][file - 1] = mc[contour_temp].y  / 0.3;		
 		drawContours(scaleImage_24bit, contours_balls, contour_temp, Scalar(0, 255, 0), 1, LINE_AA, hierarchy, 0, Point());
 		image = scaleImage_24bit;
-
 	}
-	
-	
 }
 
 
