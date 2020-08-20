@@ -142,6 +142,7 @@ AutoTest.Net/
 
 # Web workbench (sass)
 .sass-cache/
+.tif
 
 # Installshield output folder
 [Ee]xpress/
