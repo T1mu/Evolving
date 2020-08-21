@@ -29,8 +29,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath>C:\opencv\build\include;C:\opencv\build\include\opencv;C:\opencv\build\include\opencv2;C:\Users\Admin\Evolving\03_Project\01_Code\mainXRay\include;$(IncludePath)</IncludePath>
-    <ReferencePath>C:\opencv\build\include;C:\Users\Admin\Evolving\03_Project\01_Code\mainXRay\include;$(ReferencePath)</ReferencePath>
+    <IncludePath>..\include;..\include\opencv;..\include\opencv2;C:\Users\Admin\Evolving\03_Project\01_Code\mainXRay\include;$(IncludePath)</IncludePath>
+    <ReferencePath>..\include;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
@@ -63,9 +63,9 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>C:\Users\Admin\Evolving\03_Project\01_Code\mainXRay\lib;$(QTDIR)\lib;C:\opencv\build\x64\vc12\lib;C:\Users\Admin\Evolving\03_Project\01_Code\mainXRay\include;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\include;$(QTDIR)\lib;..\lib;C:\Users\Admin\Evolving\03_Project\01_Code\mainXRay\x64\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Chartsd.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;Qt5Widgetsd.lib;opencv_world310d.lib;gts.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Chartsd.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;Qt5Widgetsd.lib;opencv_world310d.lib;gts.lib;BllProject.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\DeBug\moc_%(Filename).cpp</OutputFile>
