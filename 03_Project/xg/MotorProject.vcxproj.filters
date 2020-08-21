@@ -32,47 +32,41 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="canvas.cpp">
+    <ClCompile Include="MotorProject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dragchartsigleton.cpp">
+    <ClCompile Include="MotorThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="transparent.cpp">
+    <ClCompile Include="GlobalData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XRayImgTest.cpp">
+    <ClCompile Include="MotorOnceThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ui_dragchartsigleton.h">
+    <QtMoc Include="MotorProject.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MotorThread.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MotorOnceThread.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="MotorProject.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="MotorProject.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GlobalData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="XRayImgTest.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="canvas.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="dragchartsigleton.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="transparent.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="XRayImgTest.qrc" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="canvas.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="XRayImgTest.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
   </ItemGroup>
 </Project>

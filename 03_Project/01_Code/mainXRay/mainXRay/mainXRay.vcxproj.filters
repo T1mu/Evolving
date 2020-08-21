@@ -32,46 +32,53 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="canvas.cpp">
+    <ClCompile Include="..\ui\canvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dragchartsigleton.cpp">
+    <ClCompile Include="..\ui\dragchartsigleton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="transparent.cpp">
+    <ClCompile Include="..\ui\transparent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XRayImgTest.cpp">
+    <ClCompile Include="mainXRay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\motorControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ui_dragchartsigleton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="XRayImgTest.h">
+    <QtMoc Include="mainXRay.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="canvas.h">
+    <QtMoc Include="..\ui\canvas.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="dragchartsigleton.h">
+    <QtMoc Include="..\ui\dragchartsigleton.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="transparent.h">
+    <QtMoc Include="..\ui\transparent.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\ui\motorControl.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="XRayImgTest.qrc" />
+    <QtRcc Include="mainXRay.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="canvas.ui">
+    <QtUic Include="..\ui\canvas.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="XRayImgTest.ui">
+    <QtUic Include="..\ui\dragchartsigleton.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="..\ui\motorControl.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="mainXRay.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

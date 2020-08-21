@@ -53,7 +53,7 @@ public:
     {
         if (calibration_test1Class->objectName().isEmpty())
             calibration_test1Class->setObjectName(QStringLiteral("calibration_test1Class"));
-        calibration_test1Class->resize(1123, 892);
+        calibration_test1Class->resize(1110, 877);
         btn_threshold = new QPushButton(calibration_test1Class);
         btn_threshold->setObjectName(QStringLiteral("btn_threshold"));
         btn_threshold->setEnabled(true);

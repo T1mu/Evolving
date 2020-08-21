@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XRayImgTest", "XRayImgTest\XRayImgTest.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BllMotor", "..\mainXRay\Bll\BllMotor\BllMotor.vcxproj", "{5D96B4A6-E2C6-4301-85CD-1780D760EBCD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mainXRay", "mainXRay\mainXRay.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x64.Build.0 = Debug|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.Build.0 = Release|x64
-		{5D96B4A6-E2C6-4301-85CD-1780D760EBCD}.Debug|x64.ActiveCfg = Debug|x64
-		{5D96B4A6-E2C6-4301-85CD-1780D760EBCD}.Debug|x64.Build.0 = Debug|x64
-		{5D96B4A6-E2C6-4301-85CD-1780D760EBCD}.Release|x64.ActiveCfg = Release|x64
-		{5D96B4A6-E2C6-4301-85CD-1780D760EBCD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
