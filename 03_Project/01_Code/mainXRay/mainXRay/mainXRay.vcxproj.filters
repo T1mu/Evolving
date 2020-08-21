@@ -49,9 +49,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="mainXRay.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="..\ui\canvas.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -64,9 +61,9 @@
     <QtMoc Include="..\ui\motorControl.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="mainXRay.qrc" />
+    <QtMoc Include="mainXRay.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\ui\canvas.ui">
@@ -81,5 +78,8 @@
     <QtUic Include="mainXRay.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="mainXRay.qrc" />
   </ItemGroup>
 </Project>

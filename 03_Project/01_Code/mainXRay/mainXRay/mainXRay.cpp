@@ -25,5 +25,5 @@ void mainXRay::initUI()
 
 void mainXRay::initConnect()
 {
-	/*connect(m_dragChart->trans, SIGNAL(sendMapRange(const int, const int)), m_canvs, SLOT(getMapRange(const int, const int)));*/
+	connect(m_dragChart->trans, SIGNAL(sendMapRange(const int, const int)), m_canvs, SLOT(getMapRange(const int, const int)));
 }
