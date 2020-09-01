@@ -39,7 +39,6 @@ bool BllMotor::resetCardBll(){
 	//复位运动控制卡设置
 	bool flag = m_motor->resetMotorCard();
 	for (int i = 1; i < 3; i++){
-		m_motor->setLimitOff(i);
 		m_motor->setZeroPos(i);
 	}
 	return flag;

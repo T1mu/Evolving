@@ -44,9 +44,10 @@ bool MotorProject::closeMotorCard(){
 
 bool MotorProject::resetMotorCard(){
 	//¸´Î»¿ØÖÆ¿¨
-	short sRtn;
-	sRtn = GT_Reset();
-	if (sRtn == 0){
+	short sRtn1, sRtn2;
+	sRtn1 = GT_ClrSts(1);
+	sRtn2 = GT_ClrSts(1);
+	if (sRtn1 == 0 && sRtn2 == 0){
 		return true;
 	}
 	else{
